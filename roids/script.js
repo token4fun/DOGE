@@ -133,7 +133,8 @@ function drawShip(x, y, a) {
   ctx.translate(x, y);
   ctx.rotate(-a + Math.PI / 2);
   applyGlow("#00eaff");
-  ctx.drawImage(shipImg, -SHIP_SIZE, -SHIP_SIZE, SHIP_SIZE * 2, SHIP_SIZE * 2);
+  ctx.drawImage(shipImg, -SHIP_SIZE * 0.6, -SHIP_SIZE * 1.4, SHIP_SIZE * 1.2, SHIP_SIZE * 2.8);
+  /*ctx.drawImage(shipImg, -SHIP_SIZE, -SHIP_SIZE, SHIP_SIZE * 2, SHIP_SIZE * 2); */
   resetGlow();
   ctx.restore();
 }
