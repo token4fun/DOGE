@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Todos os arquivos estão na raiz (/asteroids) -->
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+  <!-- Favicon usa logo.png -->
+  <link rel="icon" href="logo.png" type="image/x-icon" />
+  <title>D.O.G.E - Asteroids Battle</title>
+</head>
+<body>
+  <!-- Header fixo com a logo e o nome do jogo -->
+  <header id="gameHeader">
+    <img id="headerLogo" src="logo.png" alt="Logo" />
+    <h1 id="headerTitle">D.O.G.E - Asteroids Battle</h1>
+  </header>
+
+  <!-- Splash Screen (animação inicial) -->
+  <div id="splashModal">
+    <div id="splashContent">
+      <img id="splashLogo" src="logo.png" alt="Logo SherkFun Asteroids Battle" />
+      <h1 id="splashTitle">D.O.G.E - Asteroids Battle</h1>
+    </div>
+  </div>
+
+  <!-- Modal de Instruções (em inglês) -->
+  <div id="instructionsModal" class="hidden">
+    <div id="instructionsContent">
+      <h2>How to Play</h2>
+      <p>
+        Use the arrow keys to move your ship:<br>
+        - Up Arrow: Accelerate<br>
+        - Left/Right Arrows: Rotate<br>
+        - Space Bar: Fire lasers
+      </p>
+      <p>
+        You start with 3 lives (displayed as mini-ships on the top left).<br>
+        Your score appears at the top right and the best score (BEST) in the center.<br>
+        Avoid asteroids and destroy them with your lasers!
+      </p>
+      <button id="startGameBtn" class="button">Start Game</button>
+    </div>
+  </div>
+
+  <!-- DOCS Modal (informações sobre o jogo) -->
+  <div id="docsModal" class="hidden">
+    <div id="docsContent">
+      <h2>About the Game</h2>
+      <p>
+        D.O.G.E - Asteroids Battle is a modern, neon-infused reimagining of the classic Atari Asteroids game.<br>
+        Enjoy dynamic glow effects, responsive animations, and a futuristic interface designed for the metaverse.
+      </p>
+      <p>
+        Developed by MVP for D.O.G.E - Visit <a href="https://t.me/Marcelo_VP" target="_blank">MVP Games TG</a> for more games.
+      </p>
+      <button id="closeDocsBtn" class="button">Close</button>
+    </div>
+  </div>
+
+  <!-- Canvas do jogo -->
+  <canvas id="gameCanvas" width="760" height="570"></canvas>
+
+  <!-- Footer -->
+  <footer id="gameFooter">
+    <span>MVP Games - Let´s Play and Have Fun</span>
+    <button id="docsBtn" class="button">Info</button>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // --- Splash Screen e Instruções ---
+    const splashModal = document.getElementById('splashModal');
+    const instructionsModal = document.getElementById('instructionsModal');
+    const startGameBtn = document.getElementById('startGameBtn');
+
+    // Splash animation: after 3 seconds, hide splash (scale down and fade out)
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        splashModal.classList.add('hidden');
+      }, 3000);
+      // Show instructions 500ms after splash is hidden
+      setTimeout(function() {
+        instructionsModal.classList.remove('hidden');
+      }, 3500);
+    });
+
+    startGameBtn.addEventListener('click', function() {
+      instructionsModal.classList.add('hidden');
+    });
+
+    // --- DOCS Modal ---
+    const docsModal = document.getElementById('docsModal');
+    const docsBtn = document.getElementById('docsBtn');
+    const closeDocsBtn = document.getElementById('closeDocsBtn');
+
+    docsBtn.addEventListener('click', function() {
+      docsModal.classList.remove('hidden');
+    });
+    closeDocsBtn.addEventListener('click', function() {
+      docsModal.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
