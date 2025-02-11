@@ -34,7 +34,7 @@ var ctx = canv.getContext("2d");
 
 // CONFIGURAÇÃO DE IMAGENS E EFEITOS NEON
 var Img = new Image();
-shipImg.src = "ship.png";
+shipImg.src = "Ship.png";
 
 // Asteroids images (crypto1.png a crypto8.png)
 var cryptoImgs = [];
