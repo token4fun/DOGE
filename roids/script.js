@@ -40,7 +40,7 @@ shipImg.src = "Ship.png";
 var cryptoImgs = [];
 var cryptoSrcs = [
   "crypto1.png", "crypto2.png", "crypto3.png", "crypto4.png",
-  "crypto5.png", "crypto6.png", "crypto7.png", "crypto8.png"
+  "crypto5.png", "crypto6.png", "crypto7.png", "crypto8.png, crypto9.png"
 ];
 cryptoSrcs.forEach(src => {
   let img = new Image();
