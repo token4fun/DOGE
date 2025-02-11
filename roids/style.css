@@ -1,0 +1,386 @@
+/* ===================================================================
+   Reset Basics and Global Styles
+   =================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  color: #e0e0e0;
+  overflow-x: hidden;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* ===================================================================
+   Background
+   =================================================================== */
+/* Uses back2.gif as background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("back2.gif") no-repeat center center fixed;
+  background-size: cover;
+  opacity: 0.8;
+  z-index: -2;
+}
+
+/* ===================================================================
+   Game Header (Fixed)
+   =================================================================== */
+#gameHeader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2900;
+  border-bottom: 2px solid #00eaff;
+}
+
+#gameHeader #headerLogo {
+  max-height: 60px;
+  margin-right: 15px;
+  filter: drop-shadow(0 0 10px #00eaff);
+}
+
+#gameHeader #headerTitle {
+  font-size: 32px;
+  color: #00eaff;
+  text-shadow: 0 0 20px #00eaff, 0 0 40px #00eaff;
+}
+
+/* ===================================================================
+   Splash Screen
+   =================================================================== */
+#splashModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+#splashModal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.5);
+}
+
+#splashContent {
+  text-align: center;
+}
+
+#splashLogo {
+  max-width: 500px;
+  transform: scale(1.2);
+  transition: transform 1s ease-out;
+  filter: drop-shadow(0 0 10px #00eaff);
+  animation: pulseLogo 2s infinite;
+}
+
+@keyframes pulseLogo {
+  0% { filter: drop-shadow(0 0 5px #00eaff); }
+  50% { filter: drop-shadow(0 0 20px #00eaff); }
+  100% { filter: drop-shadow(0 0 5px #00eaff); }
+}
+
+#splashTitle {
+  font-size: 48px;
+  margin-top: 20px;
+  color: #00eaff;
+  text-shadow: 0 0 20px #00eaff, 0 0 40px #00eaff;
+  transform: scale(1.2);
+  transition: transform 1s ease-out;
+  animation: pulseText 2s infinite;
+}
+
+@keyframes pulseText {
+  0% { text-shadow: 0 0 10px #00eaff; }
+  50% { text-shadow: 0 0 30px #00eaff; }
+  100% { text-shadow: 0 0 10px #00eaff; }
+}
+
+/* ===================================================================
+   Instructions Modal
+   =================================================================== */
+#instructionsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+#instructionsModal:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#instructionsModal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#instructionsContent {
+  background: rgba(0, 0, 0, 0.95);
+  border: 3px solid #00eaff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+}
+
+#instructionsContent h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+#instructionsContent p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+#startGameBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #00eaff;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00eaff;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#startGameBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00eaff;
+}
+
+/* ===================================================================
+   DOCS Modal
+   =================================================================== */
+#docsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+#docsModal:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#docsModal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#docsContent {
+  background: rgba(0, 0, 0, 0.95);
+  border: 3px solid #00eaff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 400px;
+}
+
+#docsContent h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+#docsContent p {
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+#closeDocsBtn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #00eaff;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00eaff;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#closeDocsBtn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00eaff;
+}
+
+/* ===================================================================
+   Canvas
+   =================================================================== */
+canvas {
+  margin-top: 90px; /* Leave space for header */
+  border-radius: 10px;
+  z-index: 1;
+  border: 3px solid #00eaff;
+  box-shadow: 0 0 20px #00eaff;
+}
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+#gameFooter {
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.8);
+  border-top: 2px solid #00eaff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: fixed;
+  bottom: 0;
+  z-index: 2900;
+}
+
+#gameFooter span {
+  font-size: 16px;
+  color: #00eaff;
+}
+
+/* ===================================================================
+   Buttons (General)
+   =================================================================== */
+.button {
+  padding: 14px 28px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #00eaff;
+  color: #000;
+  box-shadow: 0 0 15px #00eaff;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00eaff;
+}
+
+/* ===================================================================
+   Optional: Crypto Ticker (Example Element)
+   =================================================================== */
+#crypto-ticker {
+  position: fixed;
+  top: 80px;
+  width: 100%;
+  padding: 15px 0;
+  background: #111;
+  font-size: 20px;
+  text-align: center;
+  z-index: 1000;
+  color: #00eaff;
+  animation: tickerPulse 2s infinite;
+}
+
+@keyframes tickerPulse {
+  0% { text-shadow: 0 0 5px #00eaff; }
+  50% { text-shadow: 0 0 20px #00eaff; }
+  100% { text-shadow: 0 0 5px #00eaff; }
+}
+
+/* ===================================================================
+   Responsive Adjustments
+   =================================================================== */
+@media (max-width: 768px) {
+  #headerTitle {
+    font-size: 24px;
+  }
+  #gameHeader {
+    height: 60px;
+  }
+  #headerLogo {
+    max-height: 45px;
+    margin-right: 10px;
+  }
+  #splashTitle {
+    font-size: 32px;
+  }
+  #instructionsContent, #docsContent {
+    max-width: 90%;
+    padding: 15px;
+  }
+  canvas {
+    width: 95%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  #headerTitle {
+    font-size: 20px;
+  }
+  #gameHeader {
+    height: 50px;
+  }
+  #headerLogo {
+    max-height: 40px;
+    margin-right: 8px;
+  }
+  #splashTitle {
+    font-size: 28px;
+  }
+  #instructionsContent p, #docsContent p {
+    font-size: 14px;
+  }
+  #startGameBtn, #closeDocsBtn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
