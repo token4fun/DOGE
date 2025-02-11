@@ -33,14 +33,14 @@ var canv = document.getElementById("gameCanvas");
 var ctx = canv.getContext("2d");
 
 // CONFIGURAÇÃO DE IMAGENS E EFEITOS NEON
-var Img = new Image();
+var shipImg = new Image();
 shipImg.src = "Ship.png";
 
 // Asteroids images (crypto1.png a crypto8.png)
 var cryptoImgs = [];
 var cryptoSrcs = [
   "crypto1.png", "crypto2.png", "crypto3.png", "crypto4.png",
-  "crypto5.png", "crypto6.png", "crypto7.png", "crypto8.png, crypto9.png"
+  "crypto5.png", "crypto6.png", "crypto7.png", "crypto8.png", "crypto9.png"
 ];
 cryptoSrcs.forEach(src => {
   let img = new Image();
