@@ -97,6 +97,7 @@
   text-align: center;
   color: #00ff00;
   max-width: 80%;
+  font-size: 1.8rem; /* Texto maior para as instruções */
 }
 
 /* Pause Modal */
@@ -119,6 +120,20 @@
   border: 2px solid #00ff00;
   border-radius: 10px;
   text-align: center;
+}
+
+/* Overlay de Informações do Jogo */
+#gameInfo {
+  position: absolute;
+  top: 12vh; /* Ajuste conforme desejado */
+  left: 50%;
+  transform: translateX(-50%);
+  color: #00ff00;
+  font-size: 1.8rem;
+  background: rgba(0,0,0,0.6);
+  padding: 5px 15px;
+  border-radius: 5px;
+  z-index: 1100;
 }
 
 /* ================== Resto do CSS do Jogo ================== */
@@ -152,7 +167,7 @@ body::after {
   color: #00ff00;
   text-shadow: 0 0 20px #00ff00, 0 0 40px #0077ff;
   position: absolute;
-  top: 20px;
+  top: 2vh;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -162,8 +177,8 @@ body::after {
   color: #00ff00;
   text-shadow: 0 0 10px #00ff00;
 }
-#sherkMatches { top: 10px; left: 20px; }
-#bonkMatches { top: 10px; right: 20px; }
+#sherkMatches { top: 2vh; left: 20px; }
+#bonkMatches { top: 2vh; right: 20px; }
 .score-label {
   position: absolute;
   font-size: 5vw;
@@ -171,24 +186,24 @@ body::after {
   text-shadow: 0 0 10px #00ff00;
   font-weight: bold;
 }
-#sherkScore { top: 60px; left: 60px; }
-#bonkScore { top: 60px; right: 60px; }
+#sherkScore { top: 8vh; left: 60px; }
+#bonkScore { top: 8vh; right: 60px; }
 .player-label {
   position: absolute;
   font-size: 2vw;
   color: #00ff00;
   text-shadow: 0 0 10px #00ff00;
 }
-.player-left { top: 45px; left: 20px; }
-.player-right { top: 45px; right: 20px; }
+.player-left { top: 6vh; left: 20px; }
+.player-right { top: 6vh; right: 20px; }
 .player {
   position: absolute;
   height: 200px;
   width: auto;
   animation: glow-animation 1.5s infinite alternate;
 }
-#sherk { top: 150px; left: 20px; }
-#bonk { top: 150px; right: 20px; }
+#sherk { top: 20vh; left: 20px; }
+#bonk { top: 20vh; right: 20px; }
 @keyframes glow-animation {
   0% { filter: drop-shadow(0 0 10px #00f0ff); }
   50% { filter: drop-shadow(0 0 20px #ff0000); }
