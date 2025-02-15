@@ -217,7 +217,11 @@ body::after {
   color: #00ff00;
   font-size: 2vw;
   text-shadow: 0 0 10px #00ff00;
+  display: flex;             /* Torna o contêiner flexível */
+  align-items: center;       /* Alinha verticalmente os itens */
+  gap: 10px;                 /* Espaço entre os itens */
 }
+
 .message {
   position: absolute;
   top: 50%;
