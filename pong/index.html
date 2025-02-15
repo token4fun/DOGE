@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>| - D.O.G.E. Pong - Best of 3</title>
+  <title>| D.O.G.E. Pong - Best of 3</title>
   <style>
-    /* ================== Estilos dos Modais ================== */
+    /* ================== Estilos dos Modais (Splash e Instruções) ================== */
     .hidden {
       display: none;
     }
@@ -268,7 +268,7 @@
   </style>
 </head>
 <body>
-  <!-- Splash Screen -->
+  <!-- Splash Modal -->
   <div id="splashModal">
     <div id="splashContent">
       <img id="splashLogo" src="logo.png" alt="Logo D.O.G.E. Pong" />
@@ -276,7 +276,7 @@
     </div>
   </div>
   
-  <!-- Modal de Instruções -->
+  <!-- Instructions Modal -->
   <div id="instructionsModal" class="hidden">
     <div id="instructionsContent">
       <p>
@@ -309,7 +309,7 @@
     <button id="winner-button" class="button" onclick="startNextAction()">...</button>
   </div>
   
-  <!-- Temp Message (Point for..., etc.) -->
+  <!-- Temp Message (ex: "Point for...") -->
   <div id="game-message" class="message"></div>
   
   <!-- Footer + Docs -->
@@ -345,7 +345,7 @@
     </div>
   </div>
   
-  <!-- Sounds -->
+  <!-- Sons -->
   <audio id="hitSound" src="hit_sound.MP3" preload="auto"></audio>
   <audio id="bgMusic" src="bg_music.MP3" loop="true" preload="auto"></audio>
   <audio id="victorySound" src="victory_sound.MP3" preload="auto"></audio>
@@ -355,36 +355,31 @@
   <audio id="gameSetMatchSound" src="game_set_match.MP3" preload="auto"></audio>
   
   <script>
-    // Aguarda o DOM estar totalmente carregado
     document.addEventListener("DOMContentLoaded", function() {
-      // --- Splash Screen e Modal de Instruções ---
+      // Referências aos modais e botão de iniciar o jogo
       const splashModal = document.getElementById('splashModal');
       const instructionsModal = document.getElementById('instructionsModal');
       const startGameBtn = document.getElementById('startGameBtn');
   
-      // Ao carregar a página, após 1s esconde o splash e após 1.5s exibe as instruções
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          splashModal.classList.add('hidden');
-        }, 1000);
-        setTimeout(function() {
-          instructionsModal.classList.remove('hidden');
-        }, 1500);
-      });
+      // Inicia os timeouts assim que o DOM estiver pronto:
+      setTimeout(() => {
+        splashModal.classList.add('hidden');
+      }, 1000); // Oculta o splash após 1 segundo
   
-      // Ao clicar no botão "Play", esconde o modal de instruções e inicia o jogo
+      setTimeout(() => {
+        instructionsModal.classList.remove('hidden');
+      }, 1500); // Exibe as instruções após 1,5 segundos
+  
       startGameBtn.addEventListener('click', function() {
         instructionsModal.classList.add('hidden');
         startGame();
       });
   
-      /* ===================== SETUP DIMENSIONS (MOBILE VS DESKTOP) ===================== */
+      /* ===================== SETUP DO JOGO (DIMENSÕES, CANVAS, ETC.) ===================== */
       function isMobile() { return window.innerWidth <= 600; }
       const ballSize      = isMobile() ? 35 : 50;
       const playerHeight  = isMobile() ? 100 : 200;
       const paddleDistance= isMobile() ? 50 : 100;
-  
-      /* CAP BALL SPEED AT e.g. 15 */
       const MAX_SPEED = 15;
   
       const canvas = document.getElementById("pongCanvas");
@@ -392,14 +387,12 @@
       canvas.width  = window.innerWidth;
       canvas.height = window.innerHeight;
   
-      /* Ball element, sized in code */
       let ballWidth  = ballSize;
       let ballHeight = ballSize;
       const ball = document.getElementById("ball");
       ball.style.width  = ballWidth + "px";
       ball.style.height = ballHeight + "px";
   
-      /* Referências */
       const sherkScoreEl = document.getElementById("sherkScore");
       const bonkScoreEl  = document.getElementById("bonkScore");
       const sherkMatchEl = document.getElementById("sherkMatches");
@@ -409,7 +402,6 @@
       const winnerButton = document.getElementById("winner-button");
       const gameMessage  = document.getElementById("game-message");
   
-      /* Sons */
       const hitSound         = document.getElementById("hitSound");
       const bgMusic          = document.getElementById("bgMusic");
       const pointSound       = document.getElementById("pointSound");
@@ -418,46 +410,40 @@
       const gameSetMatchSound= document.getElementById("gameSetMatchSound");
       bgMusic.volume = 0.3;
   
-      let initialSpeedX = 2,
-          initialSpeedY = 1.5;
-      let ballX = canvas.width / 2,
-          ballY = canvas.height / 2;
-      let ballSpeedX = initialSpeedX,
-          ballSpeedY = initialSpeedY,
-          ballAngle  = 0;
+      let initialSpeedX = 2, initialSpeedY = 1.5;
+      let ballX = canvas.width / 2, ballY = canvas.height / 2;
+      let ballSpeedX = initialSpeedX, ballSpeedY = initialSpeedY, ballAngle  = 0;
   
       let sherkY = canvas.height / 2 - playerHeight / 2;
       let bonkY  = canvas.height / 2 - playerHeight / 2;
   
-      let leftScore    = 0,
-          rightScore   = 0;
-      let sherkMatches = 0,
-          bonkMatches  = 0;
+      let leftScore = 0, rightScore = 0;
+      let sherkMatches = 0, bonkMatches = 0;
       let gameRunning  = false;
   
-      /* Exibe mensagens em sequência */
       function showMessageSequence(messages) {
-        if(!messages || messages.length === 0) return;
+        if (!messages || messages.length === 0) return;
         const [first, ...rest] = messages;
         gameMessage.innerText = first;
         gameMessage.style.display = "block";
         setTimeout(() => {
           gameMessage.style.display = "none";
-          if(rest.length > 0) showMessageSequence(rest);
+          if (rest.length > 0) showMessageSequence(rest);
         }, 1500);
       }
   
       document.addEventListener("mousemove", e => {
-        if(gameRunning) {
+        if (gameRunning) {
           sherkY = Math.max(0, Math.min(canvas.height - playerHeight, e.clientY - playerHeight/2));
         }
       });
+  
       let touchStartY = 0;
       document.addEventListener("touchstart", e => {
         touchStartY = e.touches[0].clientY;
       });
       document.addEventListener("touchmove", e => {
-        if(gameRunning) {
+        if (gameRunning) {
           let deltaY = e.touches[0].clientY - touchStartY;
           sherkY = Math.max(0, Math.min(canvas.height - playerHeight, sherkY + deltaY));
           touchStartY = e.touches[0].clientY;
@@ -470,14 +456,13 @@
         gameLoop();
       }
   
-      /* Aumenta a velocidade da bola em 5%, limitado a MAX_SPEED */
       function increaseBallSpeed() {
         ballSpeedX *= 1.05;
         ballSpeedY *= 1.05;
-        if(Math.abs(ballSpeedX) > MAX_SPEED) {
+        if (Math.abs(ballSpeedX) > MAX_SPEED) {
           ballSpeedX = Math.sign(ballSpeedX) * MAX_SPEED;
         }
-        if(Math.abs(ballSpeedY) > MAX_SPEED) {
+        if (Math.abs(ballSpeedY) > MAX_SPEED) {
           ballSpeedY = Math.sign(ballSpeedY) * MAX_SPEED;
         }
       }
@@ -485,27 +470,27 @@
       function updateScore(winner) {
         const pointMessage = `Point for ${winner}!`;
         let finalMessages  = [ pointMessage ];
-        if(winner === "Super Doge") {
+        if (winner === "Super Doge") {
           leftScore++;
-        } else if(winner === "Elon Musk") {
+        } else if (winner === "Elon Musk") {
           rightScore++;
         }
   
-        if(leftScore === 4 && rightScore === 4) {
+        if (leftScore === 4 && rightScore === 4) {
           finalMessages.push("Deuce!");
-          if(sherkMatches === 2 || bonkMatches === 2) {
+          if (sherkMatches === 2 || bonkMatches === 2) {
             finalMessages.push("Next point wins the Match");
           } else {
             finalMessages.push("Next point wins the Game");
           }
         }
-        else if((leftScore === 4 && rightScore === 3) ||
-                (rightScore === 4 && leftScore === 3)) {
+        else if ((leftScore === 4 && rightScore === 3) ||
+                 (rightScore === 4 && leftScore === 3)) {
           const leadIsSuperDoge = (leftScore === 4 && leftScore - rightScore === 1);
           const leadIsElon = (rightScore === 4 && rightScore - leftScore === 1);
-          if(leadIsSuperDoge) {
+          if (leadIsSuperDoge) {
             finalMessages.push(sherkMatches === 2 ? "This is the Match point for Super Doge" : "This is the Game point for Super Doge");
-          } else if(leadIsElon) {
+          } else if (leadIsElon) {
             finalMessages.push(bonkMatches === 2 ? "This is the Match point for Elon Musk" : "This is the Game point for Elon Musk");
           }
         }
@@ -518,10 +503,10 @@
         sherkScoreEl.innerText = leftScore;
         bonkScoreEl.innerText  = rightScore;
   
-        if(leftScore > rightScore) {
+        if (leftScore > rightScore) {
           sherkScoreEl.style.color = "blue";
           bonkScoreEl.style.color  = "red";
-        } else if(rightScore > leftScore) {
+        } else if (rightScore > leftScore) {
           sherkScoreEl.style.color = "red";
           bonkScoreEl.style.color  = "blue";
         } else {
@@ -550,7 +535,7 @@
         winnerMsgEl.style.display = "block";
         winnerTextEl.innerText = "Game, Set, Match!";
   
-        if(sherkMatches === 3 || bonkMatches === 3) {
+        if (sherkMatches === 3 || bonkMatches === 3) {
           winnerButton.innerText = "Start New Game";
         } else {
           winnerButton.innerText = "Start Next Match Game";
@@ -563,44 +548,42 @@
         ballAngle += 5;
         ball.style.transform = `rotate(${ballAngle}deg)`;
   
-        if(ballY <= 0) {
+        if (ballY <= 0) {
           ballY = 0;
           ballSpeedY = -ballSpeedY;
-        }
-        else if(ballY + ballHeight >= canvas.height) {
+        } else if (ballY + ballHeight >= canvas.height) {
           ballY = canvas.height - ballHeight;
           ballSpeedY = -ballSpeedY;
         }
   
-        if(ballX <= paddleDistance && ballY > sherkY && ballY < sherkY + playerHeight) {
+        if (ballX <= paddleDistance && ballY > sherkY && ballY < sherkY + playerHeight) {
           ballX = paddleDistance + 1;
           ballSpeedX = -ballSpeedX;
           increaseBallSpeed();
           hitSound.play();
         }
-        if(ballX + ballWidth >= canvas.width - paddleDistance &&
-           ballY > bonkY && ballY < bonkY + playerHeight) {
+        if (ballX + ballWidth >= canvas.width - paddleDistance &&
+            ballY > bonkY && ballY < bonkY + playerHeight) {
           ballX = canvas.width - paddleDistance - ballWidth - 1;
           ballSpeedX = -ballSpeedX;
           increaseBallSpeed();
           hitSound.play();
         }
   
-        if(ballX < 0) {
+        if (ballX < 0) {
           updateScore("Elon Musk");
           drawScore();
-          if(rightScore === 5) {
+          if (rightScore === 5) {
             bonkMatches++;
             drawScore();
             checkChampion();
             return;
           }
           resetBall();
-        }
-        else if(ballX > canvas.width) {
+        } else if (ballX > canvas.width) {
           updateScore("Super Doge");
           drawScore();
-          if(leftScore === 5) {
+          if (leftScore === 5) {
             sherkMatches++;
             drawScore();
             checkChampion();
@@ -628,13 +611,13 @@
   
       function gameLoop() {
         updateBall();
-        if(gameRunning) {
+        if (gameRunning) {
           requestAnimationFrame(gameLoop);
         }
       }
   
       function startNextAction() {
-        if(sherkMatches === 3 || bonkMatches === 3) {
+        if (sherkMatches === 3 || bonkMatches === 3) {
           sherkMatches = 0;
           bonkMatches  = 0;
         }
@@ -650,7 +633,6 @@
         gameLoop();
       }
   
-      /* DOCS Pop-up */
       function openDocs() {
         document.getElementById("docs-popup").style.display = "block";
       }
@@ -658,7 +640,7 @@
         document.getElementById("docs-popup").style.display = "none";
       }
   
-      // Expor as funções globais se necessário (por exemplo, para o botão "Close" dos DOCS)
+      // Expondo funções globais para uso em botões do DOCS, por exemplo
       window.startNextAction = startNextAction;
       window.openDocs = openDocs;
       window.closeDocs = closeDocs;
