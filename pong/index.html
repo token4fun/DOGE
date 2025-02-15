@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>|-D.O.G.E. Pong - Best of 3</title>
+  <title>| D.O.G.E. Pong - Best of 3</title>
   <style>
     /* ================== Estilos dos Modais (Splash e Instruções) ================== */
     .hidden {
@@ -25,14 +25,35 @@
       transition: opacity 0.5s ease;
     }
     
+    /* Aqui adicionamos a animação de escala e glow no conteúdo do splash */
     #splashContent {
       text-align: center;
       color: #00ff00;
+      /* A animação inicia com scale(2) e vai diminuindo até 0 */
+      animation: splashShrinkGlow 1.5s forwards;
     }
     
     #splashLogo {
       max-width: 150px;
       margin-bottom: 20px;
+    }
+    
+    @keyframes splashShrinkGlow {
+      0% {
+        transform: scale(2);
+        opacity: 1;
+        filter: drop-shadow(0 0 10px #00f0ff);
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+        filter: drop-shadow(0 0 20px #ff0000);
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+        filter: drop-shadow(0 0 10px #00f0ff);
+      }
     }
     
     /* Modal de Instruções */
@@ -276,7 +297,7 @@
     </div>
   </div>
   
-  <!-- Instructions Modal (inicialmente escondido pela classe .hidden) -->
+  <!-- Instructions Modal (inicialmente escondido) -->
   <div id="instructionsModal" class="hidden">
     <div id="instructionsContent">
       <p>
@@ -361,14 +382,14 @@
       const instructionsModal = document.getElementById('instructionsModal');
       const startGameBtn = document.getElementById('startGameBtn');
   
-      // Inicia os timeouts assim que o DOM estiver pronto:
+      // Após o DOM estar pronto, definimos os timeouts:
       setTimeout(() => {
-        splashModal.classList.add('hidden'); // Oculta o splash após 1 segundo
-      }, 1000);
+        splashModal.classList.add('hidden'); // Oculta o splash após 1.5s (fim da animação)
+      }, 1500);
   
       setTimeout(() => {
-        instructionsModal.classList.remove('hidden'); // Exibe as instruções após 1,5 segundos
-      }, 1500);
+        instructionsModal.classList.remove('hidden'); // Exibe as instruções após 1.6s
+      }, 1600);
   
       startGameBtn.addEventListener('click', function() {
         instructionsModal.classList.add('hidden'); // Oculta o modal de instruções
