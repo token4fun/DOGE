@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D.O.G.E. Pong - Best of 3</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" role="alert" aria-live="assertive">
+    <div id="loadingText">Loading Game... 0%</div>
+    <div id="loadingBarContainer">
+      <div id="loadingBar"></div>
+    </div>
+  </div>
+
+  <!-- Splash Modal -->
+  <div id="splashModal" class="hidden" aria-hidden="true">
+    <div id="splashContent">
+      <img id="splashLogo" src="images/logo.png" alt="D.O.G.E. Pong Logo">
+      <h1 id="splashTitle">D.O.G.E. Pong</h1>
+    </div>
+  </div>
+
+  <!-- Instructions Modal -->
+  <div id="instructionsModal" class="hidden" aria-hidden="true">
+    <div id="instructionsContent">
+      <p>
+        Use touch or mouse to move Super Doge up/down.<br>
+        First to 5 points wins a Match.<br>
+        First to 3 Matches is the champ!
+      </p>
+      <button id="startGameBtn" class="button">Play</button>
+    </div>
+  </div>
+
+  <!-- Pause Modal -->
+  <div id="pauseModal" class="hidden" aria-hidden="true">
+    <div id="pauseContent">
+      Game Paused (press ESC again to resume)
+    </div>
+  </div>
+
+  <!-- Conteúdo do Jogo -->
+  <div class="glow-text">D.O.G.E. Pong</div>
+  <div class="match-label" id="sherkMatches">Matches: 0</div>
+  <div class="match-label" id="bonkMatches">Matches: 0</div>
+  <div class="player-label player-left">Player: Super Doge</div>
+  <div class="score-label" id="sherkScore">0</div>
+  <div class="player-label player-right">Player: Elon Musk</div>
+  <div class="score-label" id="bonkScore">0</div>
+
+  <canvas id="pongCanvas"></canvas>
+  <img src="images/Sherk.png" id="sherk" class="player" alt="Super Doge">
+  <img src="images/Bonk.png" id="bonk" class="player" alt="Elon Musk">
+  <img src="images/ball.png" id="ball" alt="Ball">
+
+  <div id="winner-message">
+    <p id="winner-text"></p>
+    <button id="winner-button" class="button" onclick="startNextAction()">...</button>
+  </div>
+
+  <div id="game-message" class="message"></div>
+
+  <div class="footer">
+    MVP Games - Let´s Play and Have Fun &nbsp;
+    <button class="button" onclick="openDocs()">Info</button>
+  </div>
+
+  <div id="docs-popup">
+    <div class="popup-content">
+      <h2>D.O.G.E. Pong Docs</h2>
+      <p>
+        Hey there, welcome to <strong>D.O.G.E Pong Game</strong>!<br>
+        This is a chill Pong-style game where each match goes up to 5 points. Whoever hits 5 first wins that match.<br><br>
+        If you manage to win 3 matches, you become the ultimate champion!
+      </p>
+      <p>
+        <strong>How to move:</strong><br>
+        - On PC, move your mouse up/down to control Super Doge.<br>
+        - On mobile, just drag your finger on the screen. Easy enough!
+      </p>
+      <p>
+        <strong>Elon Musk’s AI:</strong><br>
+        - Elon follows the ball. He won't miss often, so be ready!
+      </p>
+      <p>
+        <strong>Pro tips:</strong><br>
+        - Watch out if the score hits 4–4—things get crazy with “Deuce!” or “Match Point!” if someone might clinch the series.<br>
+        - The ball speeds up each time it bounces, so keep your reflexes sharp!
+      </p>
+      <button onclick="closeDocs()">Close</button>
+    </div>
+  </div>
+
+  <!-- Áudios -->
+  <audio id="hitSound" src="audio/hit_sound.MP3" preload="auto"></audio>
+  <audio id="bgMusic" src="audio/bg_music.MP3" loop="true" preload="auto"></audio>
+  <audio id="victorySound" src="audio/victory_sound.MP3" preload="auto"></audio>
+  <audio id="pointSound" src="audio/point.MP3" preload="auto"></audio>
+  <audio id="matchPointSound" src="audio/match_point.MP3" preload="auto"></audio>
+  <audio id="deuceSound" src="audio/deuce.MP3" preload="auto"></audio>
+  <audio id="gameSetMatchSound" src="audio/game_set_match.MP3" preload="auto"></audio>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
