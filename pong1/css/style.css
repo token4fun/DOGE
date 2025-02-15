@@ -130,7 +130,7 @@
 /* Game Info Overlay */
 /* Atualização para o overlay de informações do jogo no footer */
 #gameInfo {
-  margin-bottom: 5px;        /* Espaço abaixo do overlay */
+  margin-bottom: 8px;        /* Espaço abaixo do overlay */
   color: #66ff66;            /* Cor neon mais clara */
   font-size: 1rem;           /* Letras menores */
   background: transparent;   /* Sem cor de fundo */
