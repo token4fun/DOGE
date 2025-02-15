@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       difficulty = "Super DOGE";
     }
-    gameInfo.textContent = `Ball Speed: ${avgSpeed} | Difficulty: ${difficulty}`;
+    gameInfo.textContent = `Ball Speed: ${avgSpeed} | Mode: ${difficulty}`;
   }
 
   function showMessageSequence(messages) {
