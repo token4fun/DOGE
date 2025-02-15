@@ -99,6 +99,11 @@
   max-width: 80%;
   font-size: 1.8rem;
 }
+.instructions-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;  /* Espaço entre os botões */
+}
 
 /* Pause Modal */
 #pauseModal {
