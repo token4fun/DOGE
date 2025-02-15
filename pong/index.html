@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>| D.O.G.E. Pong - Best of 3</title>
+  <title>|-D.O.G.E. Pong - Best of 3</title>
   <style>
     /* ================== Estilos dos Modais (Splash e Instruções) ================== */
     .hidden {
-      display: none;
+      display: none !important;
     }
     
     /* Splash Screen */
@@ -276,7 +276,7 @@
     </div>
   </div>
   
-  <!-- Instructions Modal -->
+  <!-- Instructions Modal (inicialmente escondido pela classe .hidden) -->
   <div id="instructionsModal" class="hidden">
     <div id="instructionsContent">
       <p>
@@ -356,23 +356,23 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Referências aos modais e botão de iniciar o jogo
+      // Referências aos modais e ao botão "Play"
       const splashModal = document.getElementById('splashModal');
       const instructionsModal = document.getElementById('instructionsModal');
       const startGameBtn = document.getElementById('startGameBtn');
   
       // Inicia os timeouts assim que o DOM estiver pronto:
       setTimeout(() => {
-        splashModal.classList.add('hidden');
-      }, 1000); // Oculta o splash após 1 segundo
+        splashModal.classList.add('hidden'); // Oculta o splash após 1 segundo
+      }, 1000);
   
       setTimeout(() => {
-        instructionsModal.classList.remove('hidden');
-      }, 1500); // Exibe as instruções após 1,5 segundos
+        instructionsModal.classList.remove('hidden'); // Exibe as instruções após 1,5 segundos
+      }, 1500);
   
       startGameBtn.addEventListener('click', function() {
-        instructionsModal.classList.add('hidden');
-        startGame();
+        instructionsModal.classList.add('hidden'); // Oculta o modal de instruções
+        startGame(); // Inicia o jogo
       });
   
       /* ===================== SETUP DO JOGO (DIMENSÕES, CANVAS, ETC.) ===================== */
@@ -640,7 +640,7 @@
         document.getElementById("docs-popup").style.display = "none";
       }
   
-      // Expondo funções globais para uso em botões do DOCS, por exemplo
+      // Expor funções globais, se necessário
       window.startNextAction = startNextAction;
       window.openDocs = openDocs;
       window.closeDocs = closeDocs;
