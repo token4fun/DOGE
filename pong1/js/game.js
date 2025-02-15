@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const instructionsModal = document.getElementById('instructionsModal');
   const startGameBtn = document.getElementById('startGameBtn');
   const pauseModal = document.getElementById('pauseModal');
+  const gameInfo = document.getElementById('gameInfo');
 
   // Esconde splash e instruções inicialmente
   splashModal.classList.add('hidden');
@@ -61,13 +62,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 500);
   };
 
-  // Botão "Play"
+  // Botão "Play": inicia o jogo
   startGameBtn.addEventListener('click', function() {
     instructionsModal.classList.add('hidden');
     startGame();
   });
 
-  // Listener para ESC para pausar/retomar
+  // Listener para tecla ESC para pausar/retomar
   document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") {
       if (!isPaused) {
@@ -137,6 +138,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let leftScore = 0, rightScore = 0;
   let sherkMatches = 0, bonkMatches = 0;
+
+  // Atualiza as informações do jogo (velocidade e dificuldade)
+  function updateGameInfo() {
+    // Calcula velocidade média (pode ser ajustada conforme a lógica desejada)
+    const effectiveSpeed = ((Math.abs(ballSpeedX) + Math.abs(ballSpeedY)) / 2).toFixed(2);
+    let difficulty = "Easy";
+    if (effectiveSpeed >= 8) {
+      difficulty = "Hard";
+    } else if (effectiveSpeed >= 5) {
+      difficulty = "Medium";
+    }
+    gameInfo.textContent = `Ball Speed: ${effectiveSpeed} | Difficulty: ${difficulty}`;
+  }
 
   function showMessageSequence(messages) {
     if (!messages || messages.length === 0) return;
@@ -299,11 +313,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     moveBonk();
     movePlayers();
+    updateGameInfo(); // Atualiza as informações do jogo (velocidade e dificuldade)
   }
 
+  // IA: move 10% da diferença entre o paddle da IA e o alvo
   function moveBonk() {
     let targetY = ballY - playerHeight / 2;
-    bonkY += (targetY - bonkY) * 0.05;
+    bonkY += (targetY - bonkY) * 0.10;
     bonkY = Math.max(0, Math.min(canvas.height - playerHeight, bonkY));
   }
 
@@ -343,9 +359,23 @@ document.addEventListener("DOMContentLoaded", function() {
   function closeDocs() {
     document.getElementById("docs-popup").style.display = "none";
   }
-  
-  // Expondo funções globais necessárias para os botões
+
+  // Expondo funções globais necessárias
   window.startNextAction = startNextAction;
   window.openDocs = openDocs;
   window.closeDocs = closeDocs;
+
+  // Função para atualizar o overlay de informações do jogo
+  function updateGameInfo() {
+    // Calcula uma velocidade média da bola
+    const avgSpeed = ((Math.abs(ballSpeedX) + Math.abs(ballSpeedY)) / 2).toFixed(2);
+    // Define a dificuldade com base na velocidade
+    let difficulty = "Easy";
+    if (avgSpeed >= 8) {
+      difficulty = "Hard";
+    } else if (avgSpeed >= 5) {
+      difficulty = "Medium";
+    }
+    gameInfo.textContent = `Ball Speed: ${avgSpeed} | Difficulty: ${difficulty}`;
+  }
 });
