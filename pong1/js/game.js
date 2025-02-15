@@ -324,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // IA: move 10% da diferença entre o paddle da IA e o alvo
   function moveBonk() {
     let targetY = ballY - playerHeight / 2;
-    bonkY += (targetY - bonkY) * 0.10;
+    bonkY += (targetY - bonkY) * 0.05;
     bonkY = Math.max(0, Math.min(canvas.height - playerHeight, bonkY));
   }
 
