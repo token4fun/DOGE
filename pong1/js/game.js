@@ -139,17 +139,22 @@ document.addEventListener("DOMContentLoaded", function() {
   let leftScore = 0, rightScore = 0;
   let sherkMatches = 0, bonkMatches = 0;
 
-  // Atualiza as informações do jogo (velocidade e dificuldade)
+  // Atualiza o overlay de informações do jogo (velocidade e dificuldade)
   function updateGameInfo() {
-    // Calcula velocidade média (pode ser ajustada conforme a lógica desejada)
-    const effectiveSpeed = ((Math.abs(ballSpeedX) + Math.abs(ballSpeedY)) / 2).toFixed(2);
-    let difficulty = "Easy";
-    if (effectiveSpeed >= 8) {
-      difficulty = "Hard";
-    } else if (effectiveSpeed >= 5) {
+    const avgSpeed = ((Math.abs(ballSpeedX) + Math.abs(ballSpeedY)) / 2).toFixed(2);
+    let difficulty;
+    if (avgSpeed <= 4) {
+      difficulty = "Piece of Cake";
+    } else if (avgSpeed <= 5) {
+      difficulty = "Easy";
+    } else if (avgSpeed <= 8) {
       difficulty = "Medium";
+    } else if (avgSpeed <= 10) {
+      difficulty = "Hard";
+    } else {
+      difficulty = "Super DOGE";
     }
-    gameInfo.textContent = `Ball Speed: ${effectiveSpeed} | Difficulty: ${difficulty}`;
+    gameInfo.textContent = `Ball Speed: ${avgSpeed} | Difficulty: ${difficulty}`;
   }
 
   function showMessageSequence(messages) {
@@ -313,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     moveBonk();
     movePlayers();
-    updateGameInfo(); // Atualiza as informações do jogo (velocidade e dificuldade)
+    updateGameInfo();
   }
 
   // IA: move 10% da diferença entre o paddle da IA e o alvo
@@ -360,22 +365,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("docs-popup").style.display = "none";
   }
 
-  // Expondo funções globais necessárias
+  // Expor funções globais necessárias
   window.startNextAction = startNextAction;
   window.openDocs = openDocs;
   window.closeDocs = closeDocs;
-
-  // Função para atualizar o overlay de informações do jogo
-  function updateGameInfo() {
-    // Calcula uma velocidade média da bola
-    const avgSpeed = ((Math.abs(ballSpeedX) + Math.abs(ballSpeedY)) / 2).toFixed(2);
-    // Define a dificuldade com base na velocidade
-    let difficulty = "Easy";
-    if (avgSpeed >= 8) {
-      difficulty = "Hard";
-    } else if (avgSpeed >= 5) {
-      difficulty = "Medium";
-    }
-    gameInfo.textContent = `Ball Speed: ${avgSpeed} | Difficulty: ${difficulty}`;
-  }
 });
