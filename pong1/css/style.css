@@ -128,18 +128,16 @@
 }
 
 /* Game Info Overlay */
+/* Atualização para o overlay de informações do jogo no footer */
 #gameInfo {
-  position: absolute;
-  bottom: 2vh;              /* Posicionado na parte de baixo da tela */
-  left: 50%;
-  transform: translateX(-50%);
-  color: #66ff66;           /* Cor de texto neon mais clara */
-  font-size: 1rem;          /* Letras menores */
-  background: transparent;  /* Sem cor de fundo */
-  padding: 2px 8px;         /* Menor preenchimento */
+  margin-bottom: 5px;        /* Espaço abaixo do overlay */
+  color: #66ff66;            /* Cor neon mais clara */
+  font-size: 1rem;           /* Letras menores */
+  background: transparent;   /* Sem cor de fundo */
+  padding: 2px 8px;          /* Pequeno preenchimento */
   border-radius: 5px;
-  z-index: 1100;
-  text-shadow: 0 0 5px #66ff66, 0 0 10px #66ff66;  /* Neon mais sutil */
+  text-shadow: 0 0 5px #66ff66, 0 0 10px #66ff66;
+  /* Sem position absoluto, para que fique no fluxo do footer */
 }
 
 
@@ -218,13 +216,14 @@ body::after {
 }
 .footer {
   position: absolute;
-  bottom: 8px;
+  bottom: 10px;
   color: #00ff00;
   font-size: 2vw;
   text-shadow: 0 0 10px #00ff00;
-  display: flex;             /* Torna o contêiner flexível */
-  align-items: center;       /* Alinha verticalmente os itens */
-  gap: 8px;                 /* Espaço entre os itens */
+  display: flex;             /* Contêiner flexível */
+  flex-direction: column;    /* Organiza em coluna */
+  align-items: center;       /* Centraliza horizontalmente */
+  gap: 8px;                  /* Espaço entre os itens */
 }
 
 /* Opcional: ajuste para o contêiner do contador, se necessário */
