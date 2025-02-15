@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>| Sherk Pong - Best of 3</title>
+  <title>| D.O.G.E. Pong - Best of 3</title>
 
   <style>
     body {
@@ -244,18 +244,18 @@
 <body>
 
   <!-- Title, Scores, Matches -->
-  <div class="glow-text">Sherk Pong</div>
+  <div class="glow-text">D.O.G.E. Pong</div>
   <div class="match-label" id="sherkMatches">Matches: 0</div>
   <div class="match-label" id="bonkMatches">Matches: 0</div>
-  <div class="player-label player-left">Player: Sherk</div>
+  <div class="player-label player-left">Player: Super Doge</div>
   <div class="score-label" id="sherkScore">0</div>
-  <div class="player-label player-right">Player: Pepe</div>
+  <div class="player-label player-right">Player: Elon Musk</div>
   <div class="score-label" id="bonkScore">0</div>
 
   <!-- Instructions -->
   <div id="instructions-container" class="instructions-container">
     <div class="instructions">
-      Use touch or mouse to move Sherk up/down.<br>
+      Use touch or mouse to move Super Doge up/down.<br>
       First to 5 points wins a Match.<br>
       First to 3 Matches is the champ!<br><br>
     </div>
@@ -279,8 +279,8 @@
 
   <!-- Footer + Docs -->
   <div class="footer">
-    Sherk Games - Sherkfun.io &nbsp;
-    <button class="button" style="font-size:1rem; padding:5px 10px;" onclick="openDocs()">Docs</button>
+    MVP Games - Let´s Play and Have Fun &nbsp;
+    <button class="button" style="font-size:1rem; padding:5px 10px;" onclick="openDocs()">Info</button>
   </div>
 
   <!-- Docs Pop-up -->
@@ -288,18 +288,18 @@
     <div class="popup-content">
       <h2>Sherk Pong Docs</h2>
       <p>
-        Hey there, welcome to <strong>Sherk Pong</strong>!<br>
+        Hey there, welcome to <strong>D.O.G.E Pong Game</strong>!<br>
         This is a chill Pong-style game where each match goes up to 5 points. Whoever hits 5 first wins that match.<br><br>
         If you manage to win 3 matches, you become the ultimate champion!
       </p>
       <p>
         <strong>How to move:</strong><br>
-        - On PC, move your mouse up/down to control Sherk.<br>
+        - On PC, move your mouse up/down to control Super Doge.<br>
         - On mobile, just drag your finger on the screen. Easy enough!
       </p>
       <p>
-        <strong>Pepe’s AI:</strong><br>
-        - Pepe follows the ball. He won't miss often, so be ready!
+        <strong>Elon Musk’s AI:</strong><br>
+        - Elon follows the ball. He won't miss often, so be ready!
       </p>
       <p>
         <strong>Pro tips:</strong><br>
@@ -456,15 +456,15 @@
         const leadIsBonk  = (rightScore === 4 && rightScore - leftScore === 1);
         if(leadIsSherk) {
           if(sherkMatches === 2) {
-            finalMessages.push("This is the Match point for Sherk");
+            finalMessages.push("This is the Match point for Super Doge");
           } else {
-            finalMessages.push("This is the Game point for Sherk");
+            finalMessages.push("This is the Game point for Super Doge");
           }
         } else if(leadIsBonk) {
           if(bonkMatches === 2) {
-            finalMessages.push("This is the Match point for Pepe");
+            finalMessages.push("This is the Match point for Elon Musk");
           } else {
-            finalMessages.push("This is the Game point for Pepe");
+            finalMessages.push("This is the Game point for Elon Musk");
           }
         }
       }
@@ -554,7 +554,7 @@
 
       // out left => point for Pepe
       if(ballX < 0) {
-        updateScore("Pepe");
+        updateScore("Elon");
         drawScore();
         if(rightScore === 5) {
           bonkMatches++;
@@ -566,7 +566,7 @@
       }
       // out right => point for Sherk
       else if(ballX > canvas.width) {
-        updateScore("Sherk");
+        updateScore("Doge");
         drawScore();
         if(leftScore === 5) {
           sherkMatches++;
