@@ -289,31 +289,33 @@ body::after {
 }
 .button {
   margin-top: 1rem;               /* Espaço acima do botão */
-  display: block;                 /* Permite centralização com margens automáticas */
-  margin-left: auto;              /* Centraliza horizontalmente */
-  margin-right: auto;
-  font-size: 1rem;                /* Tamanho da fonte do botão */
-  padding: 8px 16px;              /* Espaçamento interno: 8px vertical, 16px horizontal */
+  display: block;                 /* Faz com que o botão se comporte como um bloco */
+  margin-left: auto;              /* Centraliza horizontalmente (margem esquerda automática) */
+  margin-right: auto;             /* Centraliza horizontalmente (margem direita automática) */
+  font-size: 1rem;                /* Tamanho da fonte (relativo ao elemento raiz) */
+  padding: 8px 16px;              /* Espaçamento interno: 8px vertical e 16px horizontal */
   border-radius: 6px;             /* Cantos arredondados */
-  border: none;                   /* Remove bordas padrão */
-  background: linear-gradient(90deg, #00f0ff, #ff0000);  /* Fundo em gradiente, de azul para vermelho */
+  border: none;                   /* Remove borda padrão */
+  background: linear-gradient(90deg, #00f0ff, #ff0000);  /* Fundo com gradiente horizontal, do azul para o vermelho */
   color: #fff;                    /* Texto branco */
-  cursor: pointer;                /* Cursor de pointer para indicar interatividade */
+  cursor: pointer;                /* Muda o cursor para pointer ao passar o mouse */
 }
 
+
 .popup-content button {
-  margin-top: 1rem;               /* Espaço acima do botão */
-  display: block;                 /* Permite centralização com margens automáticas */
-  margin-left: auto;              /* Centraliza horizontalmente */
+  margin-top: 1rem;               
+  display: block;                 
+  margin-left: auto;              
   margin-right: auto;
-  font-size: 1rem;                /* Tamanho da fonte do botão */
-  padding: 8px 16px;              /* Espaçamento interno: 8px vertical, 16px horizontal */
-  border-radius: 6px;             /* Cantos arredondados */
-  border: none;                   /* Remove bordas padrão */
-  background: linear-gradient(90deg, #00f0ff, #ff0000);  /* Fundo em gradiente, de azul para vermelho */
-  color: #fff;                    /* Texto branco */
-  cursor: pointer;                /* Cursor de pointer para indicar interatividade */
+  font-size: 1rem;                
+  padding: 8px 16px;              
+  border-radius: 6px;             
+  border: none;                   
+  background: linear-gradient(90deg, #00f0ff, #ff0000);
+  color: #fff;                    
+  cursor: pointer;                
 }
+
 @media (max-width: 600px) {
   .player { height: 100px; }
   #sherk { top: 75px; }
