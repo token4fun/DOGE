@@ -4,39 +4,38 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>| D.O.G.E. Pong - Best of 3</title>
-
   <style>
-    /* Classe para esconder elementos */
+    /* ================== Estilos dos Modais ================== */
     .hidden {
       display: none;
     }
-
-    /* Estilos para a Splash Screen */
+    
+    /* Splash Screen */
     #splashModal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: #000; /* ou use uma imagem de fundo se preferir */
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 1000;
       transition: opacity 0.5s ease;
     }
-
+    
     #splashContent {
       text-align: center;
       color: #00ff00;
     }
-
+    
     #splashLogo {
       max-width: 150px;
       margin-bottom: 20px;
     }
-
-    /* Estilos para o Modal de Instruções */
+    
+    /* Modal de Instruções */
     #instructionsModal {
       position: fixed;
       top: 0;
@@ -49,7 +48,7 @@
       align-items: center;
       z-index: 1001;
     }
-
+    
     #instructionsContent {
       background: #111;
       border: 2px solid #00ff00;
@@ -59,8 +58,8 @@
       color: #00ff00;
       max-width: 80%;
     }
-
-    /* Resto do CSS existente */
+    
+    /* ================== Resto do CSS do Jogo ================== */
     body {
       margin: 0;
       padding: 0;
@@ -84,7 +83,7 @@
       opacity: 0.5;
       z-index: -1;
     }
-
+    
     .glow-text {
       font-size: 4vw;
       color: #00ff00;
@@ -94,7 +93,7 @@
       left: 50%;
       transform: translateX(-50%);
     }
-
+    
     .match-label {
       position: absolute;
       font-size: 3vw;
@@ -103,7 +102,7 @@
     }
     #sherkMatches { top: 10px;  left: 20px; }
     #bonkMatches  { top: 10px;  right: 20px; }
-
+    
     .score-label {
       position: absolute;
       font-size: 5vw;
@@ -113,7 +112,7 @@
     }
     #sherkScore { top: 60px; left: 60px; }
     #bonkScore  { top: 60px; right: 60px; }
-
+    
     .player-label {
       position: absolute;
       font-size: 2vw;
@@ -122,7 +121,7 @@
     }
     .player-left  { top: 45px; left: 20px; }
     .player-right { top: 45px; right: 20px; }
-
+    
     .player {
       position: absolute;
       height: 200px;
@@ -131,13 +130,13 @@
     }
     #sherk { top: 150px; left: 20px; }
     #bonk  { top: 150px; right: 20px; }
-
+    
     @keyframes glow-animation {
       0%   { filter: drop-shadow(0 0 10px #00f0ff); }
       50%  { filter: drop-shadow(0 0 20px #ff0000); }
       100% { filter: drop-shadow(0 0 10px #00f0ff); }
     }
-
+    
     .footer {
       position: absolute;
       bottom: 10px;
@@ -145,7 +144,7 @@
       font-size: 2vw;
       text-shadow: 0 0 10px #00ff00;
     }
-
+    
     .message {
       position: absolute;
       top: 50%;
@@ -157,7 +156,7 @@
       text-shadow: 0 0 20px red, 0 0 40px blue;
       display: none;
     }
-
+    
     #winner-message {
       font-size: 3vw;
       color: #00ff00;
@@ -170,13 +169,13 @@
       transform: translate(-50%, -50%);
       text-align: center;
     }
-
+    
     #ball {
       position: absolute;
       width: 50px;
       height: 50px;
     }
-
+    
     #docs-popup {
       display: none;
       position: fixed;
@@ -225,7 +224,8 @@
       color: #fff;
       cursor: pointer;
     }
-
+    
+    /* ================== Responsividade ================== */
     @media (max-width: 600px) {
       .player {
         height: 100px;
@@ -275,7 +275,7 @@
       <h1 id="splashTitle">D.O.G.E. Pong</h1>
     </div>
   </div>
-
+  
   <!-- Modal de Instruções -->
   <div id="instructionsModal" class="hidden">
     <div id="instructionsContent">
@@ -287,7 +287,7 @@
       <button id="startGameBtn" class="button">Play</button>
     </div>
   </div>
-
+  
   <!-- Title, Scores, Matches -->
   <div class="glow-text">D.O.G.E. Pong</div>
   <div class="match-label" id="sherkMatches">Matches: 0</div>
@@ -296,28 +296,28 @@
   <div class="score-label" id="sherkScore">0</div>
   <div class="player-label player-right">Player: Elon Musk</div>
   <div class="score-label" id="bonkScore">0</div>
-
+  
   <!-- Canvas & Characters -->
   <canvas id="pongCanvas"></canvas>
   <img src="Sherk.png" id="sherk" class="player">
-  <img src="Bonk.png"  id="bonk"  class="player">
+  <img src="Bonk.png" id="bonk" class="player">
   <img src="ball.png" id="ball">
-
+  
   <!-- Winner Message -->
   <div id="winner-message">
     <p id="winner-text"></p>
     <button id="winner-button" class="button" onclick="startNextAction()">...</button>
   </div>
-
+  
   <!-- Temp Message (Point for..., etc.) -->
   <div id="game-message" class="message"></div>
-
+  
   <!-- Footer + Docs -->
   <div class="footer">
     MVP Games - Let´s Play and Have Fun &nbsp;
     <button class="button" style="font-size:1rem; padding:5px 10px;" onclick="openDocs()">Info</button>
   </div>
-
+  
   <!-- Docs Pop-up -->
   <div id="docs-popup">
     <div class="popup-content">
@@ -344,7 +344,7 @@
       <button onclick="closeDocs()">Close</button>
     </div>
   </div>
-
+  
   <!-- Sounds -->
   <audio id="hitSound" src="hit_sound.MP3" preload="auto"></audio>
   <audio id="bgMusic" src="bg_music.MP3" loop="true" preload="auto"></audio>
@@ -353,331 +353,316 @@
   <audio id="matchPointSound" src="match_point.MP3" preload="auto"></audio>
   <audio id="deuceSound" src="deuce.MP3" preload="auto"></audio>
   <audio id="gameSetMatchSound" src="game_set_match.MP3" preload="auto"></audio>
-
+  
   <script>
-    // --- Splash Screen e Modal de Instruções ---
-    const splashModal = document.getElementById('splashModal');
-    const instructionsModal = document.getElementById('instructionsModal');
-    const startGameBtn = document.getElementById('startGameBtn');
-
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        splashModal.classList.add('hidden');
-      }, 1000);
-      setTimeout(function() {
-        instructionsModal.classList.remove('hidden');
-      }, 1500);
-    });
-
-    startGameBtn.addEventListener('click', function() {
-      instructionsModal.classList.add('hidden');
-      startGame(); // Inicia o jogo
-    });
-
-    /* ===================== SETUP DIMENSIONS (MOBILE VS DESKTOP) ===================== */
-    function isMobile() { return window.innerWidth <= 600; }
-    const ballSize      = isMobile() ? 35 : 50;
-    const playerHeight  = isMobile() ? 100 : 200;
-    const paddleDistance= isMobile() ? 50 : 100;  // Colisão mais próxima em mobile
-
-    /* CAP BALL SPEED AT e.g. 15 */
-    const MAX_SPEED = 15;
-
-    const canvas = document.getElementById("pongCanvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    /* Ball element, sized in code */
-    let ballWidth  = ballSize;
-    let ballHeight = ballSize;
-    const ball = document.getElementById("ball");
-    ball.style.width  = ballWidth + "px";
-    ball.style.height = ballHeight + "px";
-
-    /* Some references */
-    const sherkScoreEl = document.getElementById("sherkScore");
-    const bonkScoreEl  = document.getElementById("bonkScore");
-    const sherkMatchEl = document.getElementById("sherkMatches");
-    const bonkMatchEl  = document.getElementById("bonkMatches");
-    const winnerMsgEl  = document.getElementById("winner-message");
-    const winnerTextEl = document.getElementById("winner-text");
-    const winnerButton = document.getElementById("winner-button");
-    const gameMessage  = document.getElementById("game-message");
-
-    /* Sounds */
-    const hitSound         = document.getElementById("hitSound");
-    const bgMusic          = document.getElementById("bgMusic");
-    const pointSound       = document.getElementById("pointSound");
-    const deuceSound       = document.getElementById("deuceSound");
-    const matchPointSound  = document.getElementById("matchPointSound");
-    const gameSetMatchSound= document.getElementById("gameSetMatchSound");
-    bgMusic.volume = 0.3;
-
-    let initialSpeedX = 2,
-        initialSpeedY = 1.5;
-    let ballX = canvas.width / 2,
-        ballY = canvas.height / 2;
-    let ballSpeedX = initialSpeedX,
-        ballSpeedY = initialSpeedY,
-        ballAngle  = 0;
-
-    let sherkY = canvas.height / 2 - playerHeight / 2;
-    let bonkY  = canvas.height / 2 - playerHeight / 2;
-
-    let leftScore    = 0,
-        rightScore   = 0;
-    let sherkMatches = 0,
-        bonkMatches  = 0;
-    let gameRunning  = false;
-
-    /* Show messages in sequence */
-    function showMessageSequence(messages) {
-      if(!messages || messages.length === 0) return;
-      const [first, ...rest] = messages;
-      gameMessage.innerText = first;
-      gameMessage.style.display = "block";
-      setTimeout(() => {
-        gameMessage.style.display = "none";
-        if(rest.length > 0) showMessageSequence(rest);
-      }, 1500);
-    }
-
-    document.addEventListener("mousemove", e => {
-      if(gameRunning) {
-        sherkY = Math.max(0, Math.min(canvas.height - playerHeight, e.clientY - playerHeight/2));
+    // Aguarda o DOM estar totalmente carregado
+    document.addEventListener("DOMContentLoaded", function() {
+      // --- Splash Screen e Modal de Instruções ---
+      const splashModal = document.getElementById('splashModal');
+      const instructionsModal = document.getElementById('instructionsModal');
+      const startGameBtn = document.getElementById('startGameBtn');
+  
+      // Ao carregar a página, após 1s esconde o splash e após 1.5s exibe as instruções
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          splashModal.classList.add('hidden');
+        }, 1000);
+        setTimeout(function() {
+          instructionsModal.classList.remove('hidden');
+        }, 1500);
+      });
+  
+      // Ao clicar no botão "Play", esconde o modal de instruções e inicia o jogo
+      startGameBtn.addEventListener('click', function() {
+        instructionsModal.classList.add('hidden');
+        startGame();
+      });
+  
+      /* ===================== SETUP DIMENSIONS (MOBILE VS DESKTOP) ===================== */
+      function isMobile() { return window.innerWidth <= 600; }
+      const ballSize      = isMobile() ? 35 : 50;
+      const playerHeight  = isMobile() ? 100 : 200;
+      const paddleDistance= isMobile() ? 50 : 100;
+  
+      /* CAP BALL SPEED AT e.g. 15 */
+      const MAX_SPEED = 15;
+  
+      const canvas = document.getElementById("pongCanvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+  
+      /* Ball element, sized in code */
+      let ballWidth  = ballSize;
+      let ballHeight = ballSize;
+      const ball = document.getElementById("ball");
+      ball.style.width  = ballWidth + "px";
+      ball.style.height = ballHeight + "px";
+  
+      /* Referências */
+      const sherkScoreEl = document.getElementById("sherkScore");
+      const bonkScoreEl  = document.getElementById("bonkScore");
+      const sherkMatchEl = document.getElementById("sherkMatches");
+      const bonkMatchEl  = document.getElementById("bonkMatches");
+      const winnerMsgEl  = document.getElementById("winner-message");
+      const winnerTextEl = document.getElementById("winner-text");
+      const winnerButton = document.getElementById("winner-button");
+      const gameMessage  = document.getElementById("game-message");
+  
+      /* Sons */
+      const hitSound         = document.getElementById("hitSound");
+      const bgMusic          = document.getElementById("bgMusic");
+      const pointSound       = document.getElementById("pointSound");
+      const deuceSound       = document.getElementById("deuceSound");
+      const matchPointSound  = document.getElementById("matchPointSound");
+      const gameSetMatchSound= document.getElementById("gameSetMatchSound");
+      bgMusic.volume = 0.3;
+  
+      let initialSpeedX = 2,
+          initialSpeedY = 1.5;
+      let ballX = canvas.width / 2,
+          ballY = canvas.height / 2;
+      let ballSpeedX = initialSpeedX,
+          ballSpeedY = initialSpeedY,
+          ballAngle  = 0;
+  
+      let sherkY = canvas.height / 2 - playerHeight / 2;
+      let bonkY  = canvas.height / 2 - playerHeight / 2;
+  
+      let leftScore    = 0,
+          rightScore   = 0;
+      let sherkMatches = 0,
+          bonkMatches  = 0;
+      let gameRunning  = false;
+  
+      /* Exibe mensagens em sequência */
+      function showMessageSequence(messages) {
+        if(!messages || messages.length === 0) return;
+        const [first, ...rest] = messages;
+        gameMessage.innerText = first;
+        gameMessage.style.display = "block";
+        setTimeout(() => {
+          gameMessage.style.display = "none";
+          if(rest.length > 0) showMessageSequence(rest);
+        }, 1500);
       }
-    });
-    let touchStartY = 0;
-    document.addEventListener("touchstart", e => {
-      touchStartY = e.touches[0].clientY;
-    });
-    document.addEventListener("touchmove", e => {
-      if(gameRunning) {
-        let deltaY = e.touches[0].clientY - touchStartY;
-        sherkY = Math.max(0, Math.min(canvas.height - playerHeight, sherkY + deltaY));
+  
+      document.addEventListener("mousemove", e => {
+        if(gameRunning) {
+          sherkY = Math.max(0, Math.min(canvas.height - playerHeight, e.clientY - playerHeight/2));
+        }
+      });
+      let touchStartY = 0;
+      document.addEventListener("touchstart", e => {
         touchStartY = e.touches[0].clientY;
+      });
+      document.addEventListener("touchmove", e => {
+        if(gameRunning) {
+          let deltaY = e.touches[0].clientY - touchStartY;
+          sherkY = Math.max(0, Math.min(canvas.height - playerHeight, sherkY + deltaY));
+          touchStartY = e.touches[0].clientY;
+        }
+      });
+  
+      function startGame() {
+        gameRunning = true;
+        bgMusic.play();
+        gameLoop();
       }
-    });
-
-    function startGame() {
-      // Removida a referência ao antigo container de instruções
-      gameRunning = true;
-      bgMusic.play();
-      gameLoop();
-    }
-
-    /* Increase speed by 5% but clamp at MAX_SPEED */
-    function increaseBallSpeed() {
-      ballSpeedX *= 1.05;
-      ballSpeedY *= 1.05;
-      // clamp
-      if(Math.abs(ballSpeedX) > MAX_SPEED) {
-        ballSpeedX = Math.sign(ballSpeedX) * MAX_SPEED;
+  
+      /* Aumenta a velocidade da bola em 5%, limitado a MAX_SPEED */
+      function increaseBallSpeed() {
+        ballSpeedX *= 1.05;
+        ballSpeedY *= 1.05;
+        if(Math.abs(ballSpeedX) > MAX_SPEED) {
+          ballSpeedX = Math.sign(ballSpeedX) * MAX_SPEED;
+        }
+        if(Math.abs(ballSpeedY) > MAX_SPEED) {
+          ballSpeedY = Math.sign(ballSpeedY) * MAX_SPEED;
+        }
       }
-      if(Math.abs(ballSpeedY) > MAX_SPEED) {
-        ballSpeedY = Math.sign(ballSpeedY) * MAX_SPEED;
+  
+      function updateScore(winner) {
+        const pointMessage = `Point for ${winner}!`;
+        let finalMessages  = [ pointMessage ];
+        if(winner === "Super Doge") {
+          leftScore++;
+        } else if(winner === "Elon Musk") {
+          rightScore++;
+        }
+  
+        if(leftScore === 4 && rightScore === 4) {
+          finalMessages.push("Deuce!");
+          if(sherkMatches === 2 || bonkMatches === 2) {
+            finalMessages.push("Next point wins the Match");
+          } else {
+            finalMessages.push("Next point wins the Game");
+          }
+        }
+        else if((leftScore === 4 && rightScore === 3) ||
+                (rightScore === 4 && leftScore === 3)) {
+          const leadIsSuperDoge = (leftScore === 4 && leftScore - rightScore === 1);
+          const leadIsElon = (rightScore === 4 && rightScore - leftScore === 1);
+          if(leadIsSuperDoge) {
+            finalMessages.push(sherkMatches === 2 ? "This is the Match point for Super Doge" : "This is the Game point for Super Doge");
+          } else if(leadIsElon) {
+            finalMessages.push(bonkMatches === 2 ? "This is the Match point for Elon Musk" : "This is the Game point for Elon Musk");
+          }
+        }
+  
+        showMessageSequence(finalMessages);
+        pointSound.play();
       }
-    }
-
-    function updateScore(winner) {
-      const pointMessage = `Point for ${winner}!`;
-      let finalMessages  = [ pointMessage ];
-      if(winner === "Super Doge") {
-        leftScore++;
-      } else if(winner === "Elon Musk") {
-        rightScore++;
-      }
-
-      // 4-4 => Deuce
-      if(leftScore === 4 && rightScore === 4) {
-        finalMessages.push("Deuce!");
-        let hasSuperDoge2 = (sherkMatches === 2);
-        let hasElon2  = (bonkMatches === 2);
-        if(hasSuperDoge2 || hasElon2) {
-          finalMessages.push("Next point wins the Match");
+  
+      function drawScore() {
+        sherkScoreEl.innerText = leftScore;
+        bonkScoreEl.innerText  = rightScore;
+  
+        if(leftScore > rightScore) {
+          sherkScoreEl.style.color = "blue";
+          bonkScoreEl.style.color  = "red";
+        } else if(rightScore > leftScore) {
+          sherkScoreEl.style.color = "red";
+          bonkScoreEl.style.color  = "blue";
         } else {
-          finalMessages.push("Next point wins the Game");
+          sherkScoreEl.style.color = "#00ff00";
+          bonkScoreEl.style.color  = "#00ff00";
+        }
+  
+        sherkMatchEl.innerText = `Matches: ${sherkMatches}`;
+        bonkMatchEl.innerText  = `Matches: ${bonkMatches}`;
+      }
+  
+      function resetBall() {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        ballSpeedX = (Math.random() > 0.5 ? 1 : -1) * 2;
+        ballSpeedY = (Math.random() > 0.5 ? 1 : -1) * 1.5;
+        ballAngle  = 0;
+      }
+  
+      function checkChampion() {
+        gameRunning = false;
+        bgMusic.pause();
+        gameSetMatchSound.currentTime = 0;
+        gameSetMatchSound.play();
+  
+        winnerMsgEl.style.display = "block";
+        winnerTextEl.innerText = "Game, Set, Match!";
+  
+        if(sherkMatches === 3 || bonkMatches === 3) {
+          winnerButton.innerText = "Start New Game";
+        } else {
+          winnerButton.innerText = "Start Next Match Game";
         }
       }
-      // 4-3 => "Match point" or "Game point"
-      else if(
-        (leftScore === 4 && rightScore === 3) ||
-        (rightScore === 4 && leftScore === 3)
-      ) {
-        const leadIsSuperDoge = (leftScore === 4 && leftScore - rightScore === 1);
-        const leadIsElon  = (rightScore === 4 && rightScore - leftScore === 1);
-        if(leadIsSuperDoge) {
-          if(sherkMatches === 2) {
-            finalMessages.push("This is the Match point for Super Doge");
-          } else {
-            finalMessages.push("This is the Game point for Super Doge");
-          }
-        } else if(leadIsElon) {
-          if(bonkMatches === 2) {
-            finalMessages.push("This is the Match point for Elon Musk");
-          } else {
-            finalMessages.push("This is the Game point for Elon Musk");
-          }
+  
+      function updateBall() {
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+        ballAngle += 5;
+        ball.style.transform = `rotate(${ballAngle}deg)`;
+  
+        if(ballY <= 0) {
+          ballY = 0;
+          ballSpeedY = -ballSpeedY;
         }
-      }
-
-      showMessageSequence(finalMessages);
-      pointSound.play();
-    }
-
-    function drawScore() {
-      sherkScoreEl.innerText = leftScore;
-      bonkScoreEl.innerText  = rightScore;
-
-      if(leftScore > rightScore) {
-        sherkScoreEl.style.color = "blue";
-        bonkScoreEl.style.color  = "red";
-      } else if(rightScore > leftScore) {
-        sherkScoreEl.style.color = "red";
-        bonkScoreEl.style.color  = "blue";
-      } else {
-        sherkScoreEl.style.color = "#00ff00";
-        bonkScoreEl.style.color  = "#00ff00";
-      }
-
-      sherkMatchEl.innerText = `Matches: ${sherkMatches}`;
-      bonkMatchEl.innerText  = `Matches: ${bonkMatches}`;
-    }
-
-    function resetBall() {
-      ballX = canvas.width / 2;
-      ballY = canvas.height / 2;
-      ballSpeedX = (Math.random() > 0.5 ? 1 : -1) * 2;
-      ballSpeedY = (Math.random() > 0.5 ? 1 : -1) * 1.5;
-      ballAngle  = 0;
-    }
-
-    function checkChampion() {
-      gameRunning = false;
-      bgMusic.pause();
-      gameSetMatchSound.currentTime = 0;
-      gameSetMatchSound.play();
-
-      winnerMsgEl.style.display = "block";
-      winnerTextEl.innerText = "Game, Set, Match!";
-
-      if(sherkMatches === 3 || bonkMatches === 3) {
-        winnerButton.innerText = "Start New Game";
-      } else {
-        winnerButton.innerText = "Start Next Match Game";
-      }
-    }
-
-    function updateBall() {
-      ballX += ballSpeedX;
-      ballY += ballSpeedY;
-      ballAngle += 5;
-      ball.style.transform = `rotate(${ballAngle}deg)`;
-
-      // Bounce top
-      if(ballY <= 0) {
-        ballY = 0;
-        ballSpeedY = -ballSpeedY;
-      }
-      // Bounce bottom
-      else if(ballY + ballHeight >= canvas.height) {
-        ballY = canvas.height - ballHeight;
-        ballSpeedY = -ballSpeedY;
-      }
-
-      // Collision with Super Doge (left paddle)
-      if(ballX <= paddleDistance && ballY > sherkY && ballY < sherkY + playerHeight) {
-        ballX = paddleDistance + 1;
-        ballSpeedX = -ballSpeedX;
-        increaseBallSpeed();
-        hitSound.play();
-      }
-      // Collision with Elon Musk (right paddle)
-      if(
-        ballX + ballWidth >= canvas.width - paddleDistance &&
-        ballY > bonkY &&
-        ballY < bonkY + playerHeight
-      ) {
-        ballX = canvas.width - paddleDistance - ballWidth - 1;
-        ballSpeedX = -ballSpeedX;
-        increaseBallSpeed();
-        hitSound.play();
-      }
-
-      // Out left => point for Elon Musk (right player scores)
-      if(ballX < 0) {
-        updateScore("Elon Musk");
-        drawScore();
-        if(rightScore === 5) {
-          bonkMatches++;
+        else if(ballY + ballHeight >= canvas.height) {
+          ballY = canvas.height - ballHeight;
+          ballSpeedY = -ballSpeedY;
+        }
+  
+        if(ballX <= paddleDistance && ballY > sherkY && ballY < sherkY + playerHeight) {
+          ballX = paddleDistance + 1;
+          ballSpeedX = -ballSpeedX;
+          increaseBallSpeed();
+          hitSound.play();
+        }
+        if(ballX + ballWidth >= canvas.width - paddleDistance &&
+           ballY > bonkY && ballY < bonkY + playerHeight) {
+          ballX = canvas.width - paddleDistance - ballWidth - 1;
+          ballSpeedX = -ballSpeedX;
+          increaseBallSpeed();
+          hitSound.play();
+        }
+  
+        if(ballX < 0) {
+          updateScore("Elon Musk");
           drawScore();
-          checkChampion();
-          return;
+          if(rightScore === 5) {
+            bonkMatches++;
+            drawScore();
+            checkChampion();
+            return;
+          }
+          resetBall();
         }
-        resetBall();
-      }
-      // Out right => point for Super Doge (left player scores)
-      else if(ballX > canvas.width) {
-        updateScore("Super Doge");
-        drawScore();
-        if(leftScore === 5) {
-          sherkMatches++;
+        else if(ballX > canvas.width) {
+          updateScore("Super Doge");
           drawScore();
-          checkChampion();
-          return;
+          if(leftScore === 5) {
+            sherkMatches++;
+            drawScore();
+            checkChampion();
+            return;
+          }
+          resetBall();
         }
+  
+        moveBonk();
+        movePlayers();
+      }
+  
+      function moveBonk() {
+        let targetY = ballY - playerHeight / 2;
+        bonkY += (targetY - bonkY) * 0.05;
+        bonkY = Math.max(0, Math.min(canvas.height - playerHeight, bonkY));
+      }
+  
+      function movePlayers() {
+        document.getElementById("sherk").style.top = `${sherkY}px`;
+        document.getElementById("bonk").style.top  = `${bonkY}px`;
+        ball.style.left = `${ballX}px`;
+        ball.style.top  = `${ballY}px`;
+      }
+  
+      function gameLoop() {
+        updateBall();
+        if(gameRunning) {
+          requestAnimationFrame(gameLoop);
+        }
+      }
+  
+      function startNextAction() {
+        if(sherkMatches === 3 || bonkMatches === 3) {
+          sherkMatches = 0;
+          bonkMatches  = 0;
+        }
+        winnerMsgEl.style.display = "none";
+        leftScore  = 0;
+        rightScore = 0;
+        drawScore();
+  
         resetBall();
+        bgMusic.currentTime = 0;
+        bgMusic.play();
+        gameRunning = true;
+        gameLoop();
       }
-
-      moveBonk();
-      movePlayers();
-    }
-
-    function moveBonk() {
-      let targetY = ballY - playerHeight / 2;
-      bonkY += (targetY - bonkY) * 0.05;
-      bonkY = Math.max(0, Math.min(canvas.height - playerHeight, bonkY));
-    }
-
-    function movePlayers() {
-      document.getElementById("sherk").style.top = `${sherkY}px`;
-      document.getElementById("bonk").style.top  = `${bonkY}px`;
-      ball.style.left = `${ballX}px`;
-      ball.style.top  = `${ballY}px`;
-    }
-
-    function gameLoop() {
-      updateBall();
-      if(gameRunning) {
-        requestAnimationFrame(gameLoop);
+  
+      /* DOCS Pop-up */
+      function openDocs() {
+        document.getElementById("docs-popup").style.display = "block";
       }
-    }
-
-    function startNextAction() {
-      if(sherkMatches === 3 || bonkMatches === 3) {
-        sherkMatches = 0;
-        bonkMatches  = 0;
+      function closeDocs() {
+        document.getElementById("docs-popup").style.display = "none";
       }
-      winnerMsgEl.style.display = "none";
-      leftScore  = 0;
-      rightScore = 0;
-      drawScore();
-
-      resetBall();
-      bgMusic.currentTime = 0;
-      bgMusic.play();
-      gameRunning = true;
-      gameLoop();
-    }
-
-    /* DOCS Pop-up */
-    function openDocs() {
-      document.getElementById("docs-popup").style.display = "block";
-    }
-    function closeDocs() {
-      document.getElementById("docs-popup").style.display = "none";
-    }
+  
+      // Expor as funções globais se necessário (por exemplo, para o botão "Close" dos DOCS)
+      window.startNextAction = startNextAction;
+      window.openDocs = openDocs;
+      window.closeDocs = closeDocs;
+    });
   </script>
 </body>
 </html>
