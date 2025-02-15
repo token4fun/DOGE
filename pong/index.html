@@ -6,6 +6,65 @@
   <title>| D.O.G.E. Pong - Best of 3</title>
 
   <style>
+
+
+/* Classe para esconder elementos */
+.hidden {
+  display: none;
+}
+
+/* Estilos para a Splash Screen */
+#splashModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000; /* ou use uma imagem de fundo se preferir */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+#splashContent {
+  text-align: center;
+  color: #00ff00;
+}
+
+#splashLogo {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para o Modal de Instruções */
+#instructionsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+#instructionsContent {
+  background: #111;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #00ff00;
+  max-width: 80%;
+}
+
+
+
+    
     body {
       margin: 0;
       padding: 0;
@@ -242,6 +301,26 @@
   </style>
 </head>
 <body>
+<!-- Splash Screen -->
+<div id="splashModal">
+  <div id="splashContent">
+    <!-- Use sua logo atual ou outra imagem -->
+    <img id="splashLogo" src="logo.png" alt="Logo D.O.G.E. Pong" />
+    <h1 id="splashTitle">D.O.G.E. Pong</h1>
+  </div>
+</div>
+
+<!-- Modal de Instruções -->
+<div id="instructionsModal" class="hidden">
+  <div id="instructionsContent">
+    <p>
+      Use touch or mouse to move Super Doge up/down.<br>
+      First to 5 points wins a Match.<br>
+      First to 3 Matches is the champ!
+    </p>
+    <button id="startGameBtn" class="button">Play</button>
+  </div>
+</div>
 
   <!-- Title, Scores, Matches -->
   <div class="glow-text">D.O.G.E. Pong</div>
@@ -252,7 +331,7 @@
   <div class="player-label player-right">Player: Elon Musk</div>
   <div class="score-label" id="bonkScore">0</div>
 
-  <!-- Instructions -->
+  <!-- Instructions 
   <div id="instructions-container" class="instructions-container">
     <div class="instructions">
       Use touch or mouse to move Super Doge up/down.<br>
@@ -260,7 +339,7 @@
       First to 3 Matches is the champ!<br><br>
     </div>
     <button class="button" onclick="startGame()">Play</button>
-  </div>
+  </div> -->
 
   <!-- Canvas & Characters -->
   <canvas id="pongCanvas"></canvas>
@@ -321,6 +400,34 @@
   <audio id="gameSetMatchSound" src="game_set_match.MP3" preload="auto"></audio>
 
   <script>
+
+  // Referências para os elementos
+  const splashModal = document.getElementById('splashModal');
+  const instructionsModal = document.getElementById('instructionsModal');
+  const startGameBtn = document.getElementById('startGameBtn');
+
+  // Ao carregar a página, exibe a splash screen
+  window.addEventListener('load', function() {
+    // Após 1 segundo, esconde a splash screen
+    setTimeout(function() {
+      splashModal.classList.add('hidden');
+    }, 1000);
+    // 500ms depois, mostra o modal de instruções
+    setTimeout(function() {
+      instructionsModal.classList.remove('hidden');
+    }, 1500);
+  });
+
+  // Quando o usuário clicar em "Play", o modal de instruções some e o jogo inicia
+  startGameBtn.addEventListener('click', function() {
+    instructionsModal.classList.add('hidden');
+    startGame(); // Chama a função que inicia o jogo (já existente na sua página)
+  });
+
+
+
+
+    
     /* ===================== SETUP DIMENSIONS (MOBILE VS DESKTOP) ===================== */
     function isMobile() { return window.innerWidth <= 600; }
     const ballSize      = isMobile() ? 35 : 50;
