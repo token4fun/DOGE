@@ -294,6 +294,21 @@ body::after {
   color: #fff;
   cursor: pointer;
 }
+
+.button
+  margin-top: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(90deg, #00f0ff, #ff0000);
+  color: #fff;
+  cursor: pointer;
+}
+
 @media (max-width: 600px) {
   .player { height: 100px; }
   #sherk { top: 75px; }
