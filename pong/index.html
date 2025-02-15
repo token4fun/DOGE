@@ -6,65 +6,61 @@
   <title>| D.O.G.E. Pong - Best of 3</title>
 
   <style>
+    /* Classe para esconder elementos */
+    .hidden {
+      display: none;
+    }
 
+    /* Estilos para a Splash Screen */
+    #splashModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000; /* ou use uma imagem de fundo se preferir */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease;
+    }
 
-/* Classe para esconder elementos */
-.hidden {
-  display: none;
-}
+    #splashContent {
+      text-align: center;
+      color: #00ff00;
+    }
 
-/* Estilos para a Splash Screen */
-#splashModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000; /* ou use uma imagem de fundo se preferir */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  transition: opacity 0.5s ease;
-}
+    #splashLogo {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
 
-#splashContent {
-  text-align: center;
-  color: #00ff00;
-}
+    /* Estilos para o Modal de Instruções */
+    #instructionsModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+    }
 
-#splashLogo {
-  max-width: 150px;
-  margin-bottom: 20px;
-}
+    #instructionsContent {
+      background: #111;
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      color: #00ff00;
+      max-width: 80%;
+    }
 
-/* Estilos para o Modal de Instruções */
-#instructionsModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-}
-
-#instructionsContent {
-  background: #111;
-  border: 2px solid #00ff00;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  color: #00ff00;
-  max-width: 80%;
-}
-
-
-
-    
+    /* Resto do CSS existente */
     body {
       margin: 0;
       padding: 0;
@@ -142,30 +138,24 @@
       100% { filter: drop-shadow(0 0 10px #00f0ff); }
     }
 
-    .instructions-container {
+    .footer {
       position: absolute;
-      top: 40%;
+      bottom: 10px;
+      color: #00ff00;
+      font-size: 2vw;
+      text-shadow: 0 0 10px #00ff00;
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      text-align: center;
-      color: #fff;
-    }
-    .instructions {
-      font-size: 2vw;
-      margin-bottom: 20px;
-    }
-    .button {
-      padding: 15px 30px;
-      font-size: 2vw;
-      color: #fff;
-      background: linear-gradient(90deg, #00f0ff, #ff0000);
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 20px #00f0ff;
-    }
-    .button:hover {
-      box-shadow: 0 0 40px #ff0000;
+      font-size: 4vw;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 0 20px red, 0 0 40px blue;
+      display: none;
     }
 
     #winner-message {
@@ -185,26 +175,6 @@
       position: absolute;
       width: 50px;
       height: 50px;
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 10px;
-      color: #00ff00;
-      font-size: 2vw;
-      text-shadow: 0 0 10px #00ff00;
-    }
-
-    .message {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 4vw;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 0 20px red, 0 0 40px blue;
-      display: none;
     }
 
     #docs-popup {
@@ -273,9 +243,6 @@
       .glow-text {
         font-size: 6vw;
       }
-      .instructions {
-        font-size: 3vw;
-      }
       .button {
         font-size: 3vw;
       }
@@ -301,26 +268,25 @@
   </style>
 </head>
 <body>
-<!-- Splash Screen -->
-<div id="splashModal">
-  <div id="splashContent">
-    <!-- Use sua logo atual ou outra imagem -->
-    <img id="splashLogo" src="logo.png" alt="Logo D.O.G.E. Pong" />
-    <h1 id="splashTitle">D.O.G.E. Pong</h1>
+  <!-- Splash Screen -->
+  <div id="splashModal">
+    <div id="splashContent">
+      <img id="splashLogo" src="logo.png" alt="Logo D.O.G.E. Pong" />
+      <h1 id="splashTitle">D.O.G.E. Pong</h1>
+    </div>
   </div>
-</div>
 
-<!-- Modal de Instruções -->
-<div id="instructionsModal" class="hidden">
-  <div id="instructionsContent">
-    <p>
-      Use touch or mouse to move Super Doge up/down.<br>
-      First to 5 points wins a Match.<br>
-      First to 3 Matches is the champ!
-    </p>
-    <button id="startGameBtn" class="button">Play</button>
+  <!-- Modal de Instruções -->
+  <div id="instructionsModal" class="hidden">
+    <div id="instructionsContent">
+      <p>
+        Use touch or mouse to move Super Doge up/down.<br>
+        First to 5 points wins a Match.<br>
+        First to 3 Matches is the champ!
+      </p>
+      <button id="startGameBtn" class="button">Play</button>
+    </div>
   </div>
-</div>
 
   <!-- Title, Scores, Matches -->
   <div class="glow-text">D.O.G.E. Pong</div>
@@ -330,16 +296,6 @@
   <div class="score-label" id="sherkScore">0</div>
   <div class="player-label player-right">Player: Elon Musk</div>
   <div class="score-label" id="bonkScore">0</div>
-
-  <!-- Instructions 
-  <div id="instructions-container" class="instructions-container">
-    <div class="instructions">
-      Use touch or mouse to move Super Doge up/down.<br>
-      First to 5 points wins a Match.<br>
-      First to 3 Matches is the champ!<br><br>
-    </div>
-    <button class="button" onclick="startGame()">Play</button>
-  </div> -->
 
   <!-- Canvas & Characters -->
   <canvas id="pongCanvas"></canvas>
@@ -394,45 +350,35 @@
   <audio id="bgMusic" src="bg_music.MP3" loop="true" preload="auto"></audio>
   <audio id="victorySound" src="victory_sound.MP3" preload="auto"></audio>
   <audio id="pointSound" src="point.MP3" preload="auto"></audio>
-  <audio id="pointSound" src="point.MP3" preload="auto"></audio>
   <audio id="matchPointSound" src="match_point.MP3" preload="auto"></audio>
   <audio id="deuceSound" src="deuce.MP3" preload="auto"></audio>
   <audio id="gameSetMatchSound" src="game_set_match.MP3" preload="auto"></audio>
 
   <script>
+    // --- Splash Screen e Modal de Instruções ---
+    const splashModal = document.getElementById('splashModal');
+    const instructionsModal = document.getElementById('instructionsModal');
+    const startGameBtn = document.getElementById('startGameBtn');
 
-  // Referências para os elementos
-  const splashModal = document.getElementById('splashModal');
-  const instructionsModal = document.getElementById('instructionsModal');
-  const startGameBtn = document.getElementById('startGameBtn');
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        splashModal.classList.add('hidden');
+      }, 1000);
+      setTimeout(function() {
+        instructionsModal.classList.remove('hidden');
+      }, 1500);
+    });
 
-  // Ao carregar a página, exibe a splash screen
-  window.addEventListener('load', function() {
-    // Após 1 segundo, esconde a splash screen
-    setTimeout(function() {
-      splashModal.classList.add('hidden');
-    }, 1000);
-    // 500ms depois, mostra o modal de instruções
-    setTimeout(function() {
-      instructionsModal.classList.remove('hidden');
-    }, 1500);
-  });
+    startGameBtn.addEventListener('click', function() {
+      instructionsModal.classList.add('hidden');
+      startGame(); // Inicia o jogo
+    });
 
-  // Quando o usuário clicar em "Play", o modal de instruções some e o jogo inicia
-  startGameBtn.addEventListener('click', function() {
-    instructionsModal.classList.add('hidden');
-    startGame(); // Chama a função que inicia o jogo (já existente na sua página)
-  });
-
-
-
-
-    
     /* ===================== SETUP DIMENSIONS (MOBILE VS DESKTOP) ===================== */
     function isMobile() { return window.innerWidth <= 600; }
     const ballSize      = isMobile() ? 35 : 50;
     const playerHeight  = isMobile() ? 100 : 200;
-    const paddleDistance= isMobile() ? 50 : 100;  // Closer collisions on mobile
+    const paddleDistance= isMobile() ? 50 : 100;  // Colisão mais próxima em mobile
 
     /* CAP BALL SPEED AT e.g. 15 */
     const MAX_SPEED = 15;
@@ -515,7 +461,7 @@
     });
 
     function startGame() {
-      document.getElementById("instructions-container").style.display = "none";
+      // Removida a referência ao antigo container de instruções
       gameRunning = true;
       bgMusic.play();
       gameLoop();
@@ -537,18 +483,18 @@
     function updateScore(winner) {
       const pointMessage = `Point for ${winner}!`;
       let finalMessages  = [ pointMessage ];
-      if(winner === "Sherk") {
+      if(winner === "Super Doge") {
         leftScore++;
-      } else {
+      } else if(winner === "Elon Musk") {
         rightScore++;
       }
 
       // 4-4 => Deuce
       if(leftScore === 4 && rightScore === 4) {
         finalMessages.push("Deuce!");
-        let hasSherk2 = (sherkMatches === 2);
-        let hasBonk2  = (bonkMatches === 2);
-        if(hasSherk2 || hasBonk2) {
+        let hasSuperDoge2 = (sherkMatches === 2);
+        let hasElon2  = (bonkMatches === 2);
+        if(hasSuperDoge2 || hasElon2) {
           finalMessages.push("Next point wins the Match");
         } else {
           finalMessages.push("Next point wins the Game");
@@ -559,15 +505,15 @@
         (leftScore === 4 && rightScore === 3) ||
         (rightScore === 4 && leftScore === 3)
       ) {
-        const leadIsSherk = (leftScore === 4 && leftScore - rightScore === 1);
-        const leadIsBonk  = (rightScore === 4 && rightScore - leftScore === 1);
-        if(leadIsSherk) {
+        const leadIsSuperDoge = (leftScore === 4 && leftScore - rightScore === 1);
+        const leadIsElon  = (rightScore === 4 && rightScore - leftScore === 1);
+        if(leadIsSuperDoge) {
           if(sherkMatches === 2) {
             finalMessages.push("This is the Match point for Super Doge");
           } else {
             finalMessages.push("This is the Game point for Super Doge");
           }
-        } else if(leadIsBonk) {
+        } else if(leadIsElon) {
           if(bonkMatches === 2) {
             finalMessages.push("This is the Match point for Elon Musk");
           } else {
@@ -629,25 +575,25 @@
       ballAngle += 5;
       ball.style.transform = `rotate(${ballAngle}deg)`;
 
-      // bounce top
+      // Bounce top
       if(ballY <= 0) {
         ballY = 0;
         ballSpeedY = -ballSpeedY;
       }
-      // bounce bottom
+      // Bounce bottom
       else if(ballY + ballHeight >= canvas.height) {
         ballY = canvas.height - ballHeight;
         ballSpeedY = -ballSpeedY;
       }
 
-      // collision with Sherk
+      // Collision with Super Doge (left paddle)
       if(ballX <= paddleDistance && ballY > sherkY && ballY < sherkY + playerHeight) {
         ballX = paddleDistance + 1;
         ballSpeedX = -ballSpeedX;
         increaseBallSpeed();
         hitSound.play();
       }
-      // collision with Bonk
+      // Collision with Elon Musk (right paddle)
       if(
         ballX + ballWidth >= canvas.width - paddleDistance &&
         ballY > bonkY &&
@@ -659,9 +605,9 @@
         hitSound.play();
       }
 
-      // out left => point for Pepe
+      // Out left => point for Elon Musk (right player scores)
       if(ballX < 0) {
-        updateScore("Elon");
+        updateScore("Elon Musk");
         drawScore();
         if(rightScore === 5) {
           bonkMatches++;
@@ -671,9 +617,9 @@
         }
         resetBall();
       }
-      // out right => point for Sherk
+      // Out right => point for Super Doge (left player scores)
       else if(ballX > canvas.width) {
-        updateScore("Doge");
+        updateScore("Super Doge");
         drawScore();
         if(leftScore === 5) {
           sherkMatches++;
