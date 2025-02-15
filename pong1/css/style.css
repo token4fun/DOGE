@@ -1,0 +1,295 @@
+/* css/style.css */
+
+/* ================== Loading Overlay ================== */
+#loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#loadingText {
+  color: #00ff00;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+#loadingBarContainer {
+  width: 80%;
+  height: 20px;
+  border: 2px solid #00ff00;
+}
+#loadingBar {
+  width: 0%;
+  height: 100%;
+  background: #00ff00;
+}
+
+/* ================== Modais ================== */
+.hidden {
+  display: none !important;
+}
+
+/* Splash Modal */
+#splashModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+#splashContent {
+  text-align: center;
+  color: #00ff00;
+  animation: splashShrinkGlow 3.5s forwards;
+}
+#splashLogo {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+@keyframes splashShrinkGlow {
+  0% {
+    transform: scale(4);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #00f0ff);
+  }
+  50% {
+    transform: scale(2.2);
+    opacity: 1;
+    filter: drop-shadow(0 0 20px #ff0000);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+    filter: drop-shadow(0 0 10px #00f0ff);
+  }
+}
+
+/* Instructions Modal */
+#instructionsModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+#instructionsContent {
+  background: #111;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #00ff00;
+  max-width: 80%;
+}
+
+/* Pause Modal */
+#pauseModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #00ff00;
+  font-size: 2rem;
+  z-index: 1500;
+}
+#pauseContent {
+  padding: 20px;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* ================== Resto do CSS do Jogo ================== */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('../images/back.gif') center center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  font-family: monospace;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.5;
+  z-index: -1;
+}
+.glow-text {
+  font-size: 4vw;
+  color: #00ff00;
+  text-shadow: 0 0 20px #00ff00, 0 0 40px #0077ff;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.match-label {
+  position: absolute;
+  font-size: 3vw;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00;
+}
+#sherkMatches { top: 10px; left: 20px; }
+#bonkMatches { top: 10px; right: 20px; }
+.score-label {
+  position: absolute;
+  font-size: 5vw;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00;
+  font-weight: bold;
+}
+#sherkScore { top: 60px; left: 60px; }
+#bonkScore { top: 60px; right: 60px; }
+.player-label {
+  position: absolute;
+  font-size: 2vw;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00;
+}
+.player-left { top: 45px; left: 20px; }
+.player-right { top: 45px; right: 20px; }
+.player {
+  position: absolute;
+  height: 200px;
+  width: auto;
+  animation: glow-animation 1.5s infinite alternate;
+}
+#sherk { top: 150px; left: 20px; }
+#bonk { top: 150px; right: 20px; }
+@keyframes glow-animation {
+  0% { filter: drop-shadow(0 0 10px #00f0ff); }
+  50% { filter: drop-shadow(0 0 20px #ff0000); }
+  100% { filter: drop-shadow(0 0 10px #00f0ff); }
+}
+.footer {
+  position: absolute;
+  bottom: 10px;
+  color: #00ff00;
+  font-size: 2vw;
+  text-shadow: 0 0 10px #00ff00;
+}
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4vw;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 20px red, 0 0 40px blue;
+  display: none;
+}
+#winner-message {
+  font-size: 3vw;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00, 0 0 20px #ff0000;
+  white-space: pre-wrap;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+#ball {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
+#docs-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 9999;
+}
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #111;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  color: #00ff00;
+  box-shadow: 0 0 20px #00ff00;
+  font-size: 1.1rem;
+}
+.popup-content h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+.popup-content p {
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.popup-content button {
+  margin-top: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(90deg, #00f0ff, #ff0000);
+  color: #fff;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .player { height: 100px; }
+  #sherk { top: 75px; }
+  #bonk { top: 75px; }
+  #ball { width: 35px; height: 35px; }
+  .glow-text { font-size: 6vw; }
+  .button { font-size: 3vw; }
+  .score-label { font-size: 7vw; }
+  .match-label { font-size: 5vw; }
+  .player-label { font-size: 3vw; }
+  .footer { font-size: 3vw; }
+  .message { font-size: 6vw; }
+  #winner-message { font-size: 5vw; }
+}
