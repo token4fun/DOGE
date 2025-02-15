@@ -29,7 +29,8 @@
       <p>
         Use touch or mouse to move Super Doge up/down.<br>
         First to 5 points wins a Match.<br>
-        First to 3 Matches is the champ!
+        First to 3 Matches is the champ!<br><br>
+        <strong>Press ESC to pause/resume the game.</strong>
       </p>
       <button id="startGameBtn" class="button">Play</button>
     </div>
@@ -42,7 +43,12 @@
     </div>
   </div>
 
-  <!-- Conteúdo do Jogo -->
+  <!-- Overlay de Informações do Jogo (velocidade e dificuldade) -->
+  <div id="gameInfo" aria-live="polite">
+    <!-- O conteúdo será atualizado via JavaScript -->
+  </div>
+
+  <!-- Cabeçalho do Jogo (Título e placar) -->
   <div class="glow-text">D.O.G.E. Pong</div>
   <div class="match-label" id="sherkMatches">Matches: 0</div>
   <div class="match-label" id="bonkMatches">Matches: 0</div>
@@ -51,6 +57,7 @@
   <div class="player-label player-right">Player: Elon Musk</div>
   <div class="score-label" id="bonkScore">0</div>
 
+  <!-- Canvas e Personagens -->
   <canvas id="pongCanvas"></canvas>
   <img src="images/Sherk.png" id="sherk" class="player" alt="Super Doge">
   <img src="images/Bonk.png" id="bonk" class="player" alt="Elon Musk">
@@ -90,7 +97,7 @@
         - Watch out if the score hits 4–4—things get crazy with “Deuce!” or “Match Point!” if someone might clinch the series.<br>
         - The ball speeds up each time it bounces, so keep your reflexes sharp!
       </p>
-      <button onclick="closeDocs()">Close</button>
+      <button class="button" onclick="closeDocs()">Close</button>
     </div>
   </div>
 
