@@ -165,11 +165,11 @@ body::after {
   z-index: -1;
 }
 .glow-text {
-  font-size: 4vw;
+  font-size: 2vw;
   color: #00ff00;
   text-shadow: 0 0 20px #00ff00, 0 0 40px #0077ff;
   position: absolute;
-  top: 2vh;
+  top: 1vh;
   left: 50%;
   transform: translateX(-50%);
 }
