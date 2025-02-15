@@ -213,14 +213,21 @@ body::after {
 }
 .footer {
   position: absolute;
-  bottom: 10px;
+  bottom: 8px;
   color: #00ff00;
   font-size: 2vw;
   text-shadow: 0 0 10px #00ff00;
   display: flex;             /* Torna o contêiner flexível */
   align-items: center;       /* Alinha verticalmente os itens */
-  gap: 10px;                 /* Espaço entre os itens */
+  gap: 8px;                 /* Espaço entre os itens */
 }
+
+/* Opcional: ajuste para o contêiner do contador, se necessário */
+.visits {
+  display: flex;
+  align-items: center;
+}
+
 
 .message {
   position: absolute;
