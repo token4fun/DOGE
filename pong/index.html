@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>|D.O.G.E. Pong - Best of 3</title>
+  <title>|-D.O.G.E. Pong - Best of 3</title>
   <style>
     /* ================== Loading Overlay ================== */
     #loadingOverlay {
@@ -435,6 +435,22 @@
       // Pré-carrega a imagem logo.png
       const logoImg = new Image();
       logoImg.src = "logo.png";
+      logoImg.onerror = function() {
+        console.error("Erro ao carregar logo.png");
+        clearInterval(progressInterval);
+        progress = 100;
+        updateProgress(progress);
+        setTimeout(() => {
+          loadingOverlay.classList.add('hidden');
+          splashModal.classList.remove('hidden');
+          setTimeout(() => {
+            splashModal.classList.add('hidden');
+          }, 3500);
+          setTimeout(() => {
+            instructionsModal.classList.remove('hidden');
+          }, 3600);
+        }, 500);
+      };
       logoImg.onload = function() {
         clearInterval(progressInterval);
         progress = 100;
@@ -522,7 +538,7 @@
       
       let leftScore = 0, rightScore = 0;
       let sherkMatches = 0, bonkMatches = 0;
-      let gameRunning = false;
+      // 'gameRunning' já foi declarada no início do DOMContentLoaded
       
       function showMessageSequence(messages) {
         if (!messages || messages.length === 0) return;
