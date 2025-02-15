@@ -175,7 +175,7 @@ body::after {
 }
 .match-label {
   position: absolute;
-  font-size: 3vw;
+  font-size: 2vw;
   color: #00ff00;
   text-shadow: 0 0 10px #00ff00;
 }
@@ -183,7 +183,7 @@ body::after {
 #bonkMatches { top: 2vh; right: 20px; }
 .score-label {
   position: absolute;
-  font-size: 5vw;
+  font-size: 3vw;
   color: #00ff00;
   text-shadow: 0 0 10px #00ff00;
   font-weight: bold;
