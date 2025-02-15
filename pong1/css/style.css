@@ -125,16 +125,18 @@
 /* Game Info Overlay */
 #gameInfo {
   position: absolute;
-  top: 12vh;
+  bottom: 2vh;              /* Posicionado na parte de baixo da tela */
   left: 50%;
   transform: translateX(-50%);
-  color: #00ff00;
-  font-size: 1.8rem;
-  background: rgba(0,0,0,0.6);
-  padding: 5px 15px;
+  color: #66ff66;           /* Cor de texto neon mais clara */
+  font-size: 1rem;          /* Letras menores */
+  background: transparent;  /* Sem cor de fundo */
+  padding: 2px 8px;         /* Menor preenchimento */
   border-radius: 5px;
   z-index: 1100;
+  text-shadow: 0 0 5px #66ff66, 0 0 10px #66ff66;  /* Neon mais sutil */
 }
+
 
 /* ================== Resto do CSS do Jogo ================== */
 body {
