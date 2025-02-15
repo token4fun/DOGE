@@ -102,7 +102,7 @@
 .instructions-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;  /* Espaço entre os botões */
+  gap: 2px;  /* Espaço entre os botões */
 }
 
 /* Pause Modal */
